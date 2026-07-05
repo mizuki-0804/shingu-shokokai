@@ -3084,8 +3084,8 @@ select {
 
   .tsukigi-brand-row {
     grid-template-columns: 1fr;
-    padding: 8px 20px 18px;
-    gap: 14px;
+    padding: 10px 18px 14px;
+    gap: 12px;
     min-height: auto;
   }
 
@@ -3109,26 +3109,28 @@ select {
   }
 
   .tsukigi-brand-row p {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.5;
   }
 
   .tsukigi-top-links {
     justify-self: stretch;
-    gap: 14px;
-    font-size: 12px;
+    gap: 8px 12px;
+    font-size: 11px;
   }
 
   .tsukigi-visual,
   .tsukigi-visual img {
-    min-height: 560px;
-    height: 560px;
+    min-height: 470px;
+    height: min(68vh, 500px);
   }
 
   .visual-whats {
-    top: 22px;
+    top: 20px;
     left: 18px;
     max-width: calc(100% - 36px);
-    font-size: clamp(44px, 13vw, 66px);
+    color: rgba(255, 255, 255, 0.16);
+    font-size: clamp(34px, 10.5vw, 48px);
     line-height: 0.92;
     transform: none;
   }
@@ -3136,7 +3138,7 @@ select {
   .visual-message {
     left: 20px;
     right: 20px;
-    bottom: 34px;
+    bottom: 104px;
     width: auto;
     transform: none;
   }
@@ -3152,15 +3154,15 @@ select {
   }
 
   .visual-message h1 {
-    font-size: clamp(31px, 9.4vw, 40px);
-    line-height: 1.18;
+    font-size: clamp(29px, 8.5vw, 36px);
+    line-height: 1.16;
   }
 
   .visual-lead {
     max-width: 29em;
-    margin-top: 14px;
-    font-size: 14px;
-    line-height: 1.75;
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 1.65;
   }
 
   .visual-progress {
@@ -3172,12 +3174,46 @@ select {
   }
 
   .visual-link-panels {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 16px;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    max-width: none;
+    margin: 0;
+    background: #000;
+    border: 2px solid #000;
+  }
+
+  .visual-link-panels a {
+    min-height: 68px;
+    grid-template-columns: 1fr;
+    align-content: center;
+    align-items: center;
+    padding: 10px 8px;
+    border-right: 1px solid #222;
+    border-bottom: 0;
+    background: #fff;
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .visual-link-panels a:last-child {
+    border-right: 0;
+  }
+
+  .visual-link-panels span {
     display: none;
   }
 
   .tsukigi-search {
     grid-template-columns: 1fr;
-    margin: 16px 20px 0;
+    margin: 14px 20px 0;
   }
 
   .tsukigi-search label {
@@ -3197,8 +3233,13 @@ select {
 
   .tsukigi-newsline {
     grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 30px 20px;
+    gap: 12px;
+    padding: 26px 20px;
+  }
+
+  .tsukigi-newsline h2 {
+    font-size: 14px;
+    letter-spacing: 0.24em;
   }
 
   .tsukigi-newsline .simple-news-list li {
@@ -3209,12 +3250,21 @@ select {
   }
 
   .tsukigi-pickup {
-    gap: 22px;
-    padding: 20px 20px 52px;
+    gap: 18px;
+    padding: 18px 20px 42px;
   }
 
   .pickup-photo {
     border-radius: 12px;
+  }
+
+  .pickup-photo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, 0.68));
   }
 
   .pickup-photo img {
@@ -3222,10 +3272,13 @@ select {
   }
 
   .pickup-photo p {
-    left: 34px;
-    right: 34px;
-    top: 54px;
-    font-size: 27px;
+    left: 18px;
+    right: 18px;
+    top: auto;
+    bottom: 18px;
+    z-index: 2;
+    font-size: 22px;
+    line-height: 1.28;
   }
 
   .pickup-copy {
@@ -3234,7 +3287,16 @@ select {
 
   .vertical-title {
     writing-mode: horizontal-tb;
-    font-size: 56px;
+    font-size: 40px;
+  }
+
+  .pickup-copy h2 {
+    font-size: 24px;
+  }
+
+  .pickup-copy p:not(.vertical-title) {
+    font-size: 14px;
+    line-height: 1.75;
   }
 
   .pickup-card-list a {
@@ -3272,7 +3334,7 @@ select {
 
   .home-page .region-title h2 {
     writing-mode: horizontal-tb;
-    font-size: 56px;
+    font-size: 40px;
   }
 
   .feature-lead-story img {
@@ -3292,14 +3354,22 @@ select {
     gap: 12px;
   }
 
+  .function-heading h2 {
+    font-size: 34px;
+  }
+
   .function-grid {
     grid-template-columns: 1fr;
   }
 
   .function-grid a {
     min-height: auto;
-    padding: 20px 0;
+    padding: 20px;
     border-right: 0;
+  }
+
+  .function-grid h3 {
+    font-size: 22px;
   }
 
   .contact-list div {
