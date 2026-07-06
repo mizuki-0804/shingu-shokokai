@@ -512,7 +512,9 @@ select {
   color: #000;
   background: rgba(255, 255, 255, 0.9);
   font-weight: 900;
+  line-height: 1.35;
   text-decoration: none;
+  word-break: keep-all;
   transition:
     transform 0.45s var(--motion-ease),
     background 0.3s ease,
@@ -725,8 +727,9 @@ select {
 .pickup-copy h2 {
   margin-bottom: 12px;
   color: #000;
-  font-size: clamp(24px, 3vw, 40px);
+  font-size: clamp(24px, 2.7vw, 36px);
   line-height: 1.25;
+  word-break: keep-all;
 }
 
 .pickup-copy p:not(.vertical-title) {
@@ -841,6 +844,9 @@ select {
 .home-page .portal-intro h2 {
   font-size: 25px;
   font-weight: 900;
+  line-height: 1.35;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .home-page .features-section,
@@ -1005,9 +1011,11 @@ select {
 
 .function-heading h2 {
   margin: 0;
-  font-size: clamp(34px, 5vw, 72px);
+  font-size: clamp(34px, 4.4vw, 64px);
   font-weight: 900;
   line-height: 1.08;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .function-heading span {
@@ -1081,7 +1089,7 @@ select {
 
 .contact-section {
   display: grid;
-  grid-template-columns: minmax(280px, 0.8fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(360px, 0.9fr) minmax(320px, 1fr);
   gap: 34px;
   align-items: start;
   background: #fff;
@@ -1089,7 +1097,11 @@ select {
 }
 
 .contact-section h2 {
-  font-size: clamp(34px, 4vw, 58px);
+  max-width: 11em;
+  font-size: clamp(34px, 3.4vw, 50px);
+  line-height: 1.12;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .contact-section p:not(.eyebrow) {
@@ -1715,10 +1727,13 @@ h2 {
   font-size: clamp(25px, 3.2vw, 38px);
   font-weight: 700;
   line-height: 1.2;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 h3 {
   line-height: 1.35;
+  text-wrap: pretty;
 }
 
 .hero-lead {
@@ -1745,6 +1760,7 @@ h3 {
   border-radius: 8px;
   font-weight: 800;
   text-decoration: none;
+  word-break: keep-all;
 }
 
 .button.primary {
@@ -2054,7 +2070,8 @@ select {
   margin: 6px 0;
   font-size: 18px;
   line-height: 1.38;
-  text-wrap: pretty;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .ad-card p {
@@ -2154,7 +2171,8 @@ select {
   margin: 8px 0;
   font-size: 21px;
   line-height: 1.45;
-  text-wrap: pretty;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .feature-card p,
@@ -2209,6 +2227,9 @@ select {
 .article-card h3 {
   margin: 8px 0;
   font-size: 20px;
+  line-height: 1.45;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .article-card p {
@@ -2287,6 +2308,9 @@ select {
 .interview-card h3 {
   margin: 6px 0 10px;
   font-size: 21px;
+  line-height: 1.45;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .interview-card strong {
@@ -2702,7 +2726,7 @@ select {
 
 .news-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
   gap: 14px;
 }
 
@@ -2726,6 +2750,8 @@ select {
 .news-list a {
   color: inherit;
   text-decoration: none;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .apply-section {
