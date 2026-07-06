@@ -25,6 +25,14 @@ function mapUrl(business) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`;
 }
 
+function isCallablePhone(phone) {
+  return /^[0-9-]+$/.test(phone);
+}
+
+function phoneMarkup(phone) {
+  return isCallablePhone(phone) ? `<a href="tel:${phone}">${phone}</a>` : phone;
+}
+
 function externalLinks(business, compact = false) {
   const links = [
     business.website
@@ -34,7 +42,7 @@ function externalLinks(business, compact = false) {
     business.instagram
       ? `<a href="${business.instagram}" target="_blank" rel="noreferrer">Instagram</a>`
       : "",
-    compact ? "" : `<a href="tel:${business.phone}">電話</a>`
+    compact || !isCallablePhone(business.phone) ? "" : `<a href="tel:${business.phone}">電話</a>`
   ];
   return links.filter(Boolean).join("");
 }
@@ -93,7 +101,7 @@ function businessCard(business, options = {}) {
         ${options.compact ? "" : `
           <dl class="card-info">
             <div><dt>所在地</dt><dd>${business.address}</dd></div>
-            <div><dt>電話</dt><dd><a href="tel:${business.phone}">${business.phone}</a></dd></div>
+            <div><dt>電話</dt><dd>${phoneMarkup(business.phone)}</dd></div>
           </dl>
         `}
         <div class="card-links">
@@ -419,7 +427,7 @@ function renderDetailPage() {
         <div class="tag-row">${business.tags.map((tag) => `<span>${tag}</span>`).join("")}</div>
         <dl class="info-list">
           <div><dt>所在地</dt><dd>${business.address}</dd></div>
-          <div><dt>電話</dt><dd><a href="tel:${business.phone}">${business.phone}</a></dd></div>
+          <div><dt>電話</dt><dd>${phoneMarkup(business.phone)}</dd></div>
           <div><dt>メール</dt><dd><a href="mailto:${business.email}">${business.email}</a></dd></div>
           <div><dt>営業時間</dt><dd>${business.hours}</dd></div>
           <div><dt>定休日</dt><dd>${business.closed}</dd></div>
