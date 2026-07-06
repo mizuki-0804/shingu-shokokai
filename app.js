@@ -36,7 +36,7 @@ function phoneMarkup(phone) {
 function externalLinks(business, compact = false) {
   const links = [
     business.website
-      ? `<a href="${business.website}" target="_blank" rel="noreferrer">HP</a>`
+      ? `<a href="${business.website}" target="_blank" rel="noreferrer">公式サイト</a>`
       : "",
     `<a href="${mapUrl(business)}" target="_blank" rel="noreferrer">Googleマップ</a>`,
     business.instagram
@@ -88,7 +88,7 @@ function filteredBusinesses() {
 function businessCard(business, options = {}) {
   const detailLink = business.detailPage
     ? `<a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>`
-    : `<span class="card-note">基本情報を見る</span>`;
+    : `<span class="card-note">基本情報のみ掲載</span>`;
 
   return `
     <article class="business-card ${business.detailPage ? "premium" : ""}">

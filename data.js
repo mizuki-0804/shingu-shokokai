@@ -35,7 +35,7 @@ const memberCompanyPlaceholders = [
   planRank: 5,
   detailPage: false,
   catchcopy,
-  description: "正式な紹介文、連絡先、営業時間は確認後に掲載します。まずは会員企業一覧の掲載枠として表示しています。",
+  description: "詳しい紹介文、連絡先、営業時間は確認後に順次更新します。現在は基本情報を確認できる事業者として掲載しています。",
   tags,
   phone: "確認中",
   email: "確認中",
