@@ -134,13 +134,21 @@ function filteredBusinesses() {
   });
 }
 
+function planTierClass(planRank) {
+  if (planRank < 2) return "plan-tier-10";
+  if (planRank < 3) return "plan-tier-5";
+  if (planRank < 4) return "plan-tier-3";
+  if (planRank < 5) return "plan-tier-1";
+  return "plan-tier-pending";
+}
+
 function businessCard(business, options = {}) {
   const detailLink = business.detailPage
     ? `<a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>`
     : `<span class="card-note">基本情報のみ掲載</span>`;
 
   return `
-    <article class="business-card ${business.detailPage ? "premium" : ""}">
+    <article class="business-card ${planTierClass(business.planRank)} ${business.detailPage ? "premium" : ""}">
       <img src="${business.image}" alt="${business.name}のイメージ写真" loading="lazy">
       <div class="business-card-body">
         <span class="plan-badge">${business.plan}</span>
