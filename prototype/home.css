@@ -1928,7 +1928,34 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .interviews-nav {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 20px;
+}
+
+.inverted-dock-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(246, 244, 236, 0.8);
+  transition: color 0.3s;
+}
+
+.inverted-dock-all i {
+  font-style: normal;
+  color: var(--gold);
+  transition: transform 0.35s var(--ease-out);
+}
+
+.inverted-dock-all:hover {
+  color: var(--paper);
+}
+
+.inverted-dock-all:hover i {
+  transform: translateX(5px);
 }
 
 .interviews-nav button {
