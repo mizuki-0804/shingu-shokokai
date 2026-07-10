@@ -168,7 +168,12 @@
     play();
   }
 
-  /* 業種ドックは各タイルが businesses.html?category=X へ直接遷移する静的リンク（JS不要） */
+  /* ============ 業種ドック（プルダウンで businesses.html?category=X へ遷移） ============ */
+  const dockCategory = qs("#dock-category");
+  dockCategory?.addEventListener("change", () => {
+    const value = dockCategory.value;
+    window.location.href = value ? `./businesses.html?category=${encodeURIComponent(value)}` : "./businesses.html";
+  });
 
   /* ============ ニュースティッカー（シームレスループ用に複製） ============ */
   const tickerTrack = qs("#newsline-track");
