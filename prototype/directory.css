@@ -580,6 +580,16 @@ body > .page-progress:not(:has(i)),
   color: var(--muted);
 }
 
+.contact-form legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
 .contact-form .req {
   display: inline-block;
   font-style: normal;
@@ -620,10 +630,41 @@ body > .page-progress:not(:has(i)),
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--blue) 16%, transparent);
 }
 
-.contact-form .contact-type select {
-  font-family: var(--font-sans);
+.cf-types {
+  display: grid;
+  gap: 12px;
+  border: 0;
+  padding: 0;
+}
+
+.cf-types legend {
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.cf-types .hint {
   font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-transform: none;
+}
+
+.contact-form label.cf-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.cf-check input[type="checkbox"] {
+  width: 19px;
+  height: 19px;
+  accent-color: var(--blue);
+  cursor: pointer;
 }
 
 .contact-note {
