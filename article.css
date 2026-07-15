@@ -137,6 +137,11 @@
   color: #2c2a22;
 }
 
+/* .article-foot / .related が続かないページでは、フッターとの間に余白を確保する */
+main > .article-body:last-child {
+  padding-bottom: clamp(52px, 9vh, 96px);
+}
+
 .article-body > * + * { margin-top: 1.7em; }
 
 .article-body .lead {
@@ -172,6 +177,29 @@
   color: var(--blue);
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* ボタン系リンクは本文中の下線リンク装飾を継承しない */
+.article-body .button-primary,
+.article-body .button-ghost,
+.article-body .button-light,
+.article-body .button.primary,
+.article-body .download-card-btn {
+  text-decoration: none;
+}
+
+.article-body .button-primary,
+.article-body .button.primary,
+.article-body .download-card-btn {
+  color: var(--paper);
+}
+
+.article-body .button-ghost {
+  color: var(--ink);
+}
+
+.article-body .button-ghost:hover {
+  color: var(--blue);
 }
 
 .article-body blockquote {

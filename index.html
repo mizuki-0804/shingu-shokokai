@@ -17,7 +17,8 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./home.css?v=20260710-demo5" />
+    <link rel="stylesheet" href="./home.css?v=20260715-demo2" />
+    <link rel="stylesheet" href="./directory.css?v=20260715-demo3" />
   </head>
   <body class="home">
     <!-- Opening -->
@@ -46,6 +47,7 @@
         <a href="./articles.html?category=事業者の声">事業者の声</a>
         <a href="./businesses.html">会員企業</a>
         <a href="./plans.html">掲載プラン</a>
+        <a href="./nyukai.html">入会案内</a>
         <a href="#news">お知らせ</a>
       </nav>
       <a class="header-cta" href="./contact.html"><span>相談する</span></a>
@@ -60,6 +62,7 @@
       <a href="./articles.html?category=事業者の声">事業者の声</a>
       <a href="./businesses.html">会員企業一覧</a>
       <a href="./plans.html">掲載プラン</a>
+      <a href="./nyukai.html">入会案内</a>
       <a href="#news">お知らせ</a>
       <a class="mobile-menu-cta" href="./contact.html">商工会に相談する</a>
     </nav>
@@ -332,16 +335,16 @@
             <p>飲食、住まい、美容、健康、サービスなど、町内の会員企業を探せます。</p>
             <i aria-hidden="true">→</i>
           </a>
-          <a href="#apply" data-reveal>
+          <a href="./contact.html?type=pr" data-reveal>
             <span class="service-num">05</span>
             <h3>お店・会社のPR相談</h3>
             <p>お店紹介、インタビュー、商品・サービス紹介など、地域に知ってほしい内容を相談できます。</p>
             <i aria-hidden="true">→</i>
           </a>
-          <a id="join" href="./contact.html?type=入会" data-reveal>
+          <a id="join" href="./nyukai.html" data-reveal>
             <span class="service-num">06</span>
             <h3>入会案内</h3>
-            <p>商工会への加入や青年部活動など、地域の事業者とつながるきっかけを案内します。</p>
+            <p>会員のメリット、入会資格、会費、加入申込書のダウンロードまでご案内します。</p>
             <i aria-hidden="true">→</i>
           </a>
         </div>
@@ -418,7 +421,7 @@
         <div class="contact-info">
           <p class="section-eyebrow" data-reveal><em>ACCESS / CONTACT</em>相談窓口</p>
           <h2 id="contact-title" data-reveal>相談・問い合わせ窓口</h2>
-          <p data-reveal>資金繰りや販路づくりなどの経営相談、創業準備、商工会への入会、お店・会社のPR相談まで、まずは新宮町商工会へご相談ください。</p>
+          <p data-reveal>経営相談、創業準備、お店・会社のPRや掲載、商工会への入会まで。新宮町商工会がまとめて相談を受け付けます。まずはお気軽にご相談ください。</p>
           <dl class="contact-list" data-reveal>
             <div><dt>団体名</dt><dd>新宮町商工会</dd></div>
             <div><dt>所在地</dt><dd>〒811-0112 福岡県糟屋郡新宮町下府3-17-1</dd></div>
@@ -430,15 +433,46 @@
           </dl>
           <div class="contact-actions" data-reveal>
             <a class="button-ghost" href="http://www.shinguumachi.or.jp/about" target="_blank" rel="noreferrer"><span>アクセスを見る</span><i aria-hidden="true">↗</i></a>
-            <a class="button-primary" href="./contact.html"><span>商工会へ相談する</span><i aria-hidden="true">→</i></a>
+            <a class="button-primary" href="./contact.html"><span>専用ページで相談する</span><i aria-hidden="true">→</i></a>
           </div>
+          <a class="apply-plans" href="./plans.html" data-reveal>お店・会社の掲載プランを見る<i aria-hidden="true">→</i></a>
         </div>
-        <aside id="apply" class="apply-panel" data-reveal>
-          <p class="section-eyebrow inverted-eyebrow"><em>FOR LOCAL BUSINESSES</em>掲載のご案内</p>
-          <h2>地元企業の魅力を、<br />地域へ届けませんか。</h2>
-          <p>お店紹介、経営者インタビュー、商品・サービス紹介など、地域の人に知ってほしい内容を相談できます。</p>
-          <a class="button-light" href="./contact.html?type=pr"><span>PRについて相談する</span><i aria-hidden="true">→</i></a>
-          <a class="apply-plans" href="./plans.html">掲載プランを見る<i aria-hidden="true">→</i></a>
+
+        <aside class="contact-form-panel" data-reveal>
+          <p class="section-eyebrow"><em>QUICK FORM</em>かんたん相談フォーム</p>
+          <form class="contact-form" id="home-contact-form" novalidate>
+            <label for="hcf-name">
+              <span class="label-text">お名前 <em class="req" aria-hidden="true">必須</em></span>
+              <input type="text" id="hcf-name" name="name" required autocomplete="name" placeholder="例）新宮 太郎" />
+            </label>
+            <label for="hcf-company">
+              事業者名・屋号（任意）
+              <input type="text" id="hcf-company" name="company" autocomplete="organization" placeholder="例）しんぐうベーカリー" />
+            </label>
+            <label for="hcf-contact">
+              <span class="label-text">ご連絡先（メールまたは電話） <em class="req" aria-hidden="true">必須</em></span>
+              <input type="text" id="hcf-contact" name="contact" required placeholder="例）info@example.com / 092-000-0000" />
+            </label>
+            <fieldset class="cf-types" id="hcf-types">
+              <legend>相談の種類 <span class="hint">（複数選択可）</span></legend>
+              <label class="cf-check"><input type="checkbox" name="type" value="経営相談" /><span>経営相談（資金繰り・販路など）</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="創業" /><span>創業・開業の相談</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="pr" /><span>お店・会社の掲載やPR</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="入会" /><span>商工会への入会</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="その他" /><span>その他</span></label>
+            </fieldset>
+            <label for="hcf-body">
+              <span class="label-text">ご相談内容 <em class="req" aria-hidden="true">必須</em></span>
+              <textarea id="hcf-body" name="body" required placeholder="いま困っていること、相談したいことをご記入ください。"></textarea>
+            </label>
+            <p class="contact-note">※ これはデモ画面です。送信ボタンを押しても実際には送信されません。</p>
+            <button class="button primary contact-submit" type="submit"><span>この内容で相談する</span></button>
+          </form>
+          <div class="form-done" id="home-form-done" hidden>
+            <p class="fd-mark" aria-hidden="true">✓</p>
+            <h3>ご相談を受け付けました（デモ）</h3>
+            <p>本番環境では、ここで受付完了メールが届き、担当者から2営業日以内にご連絡します。</p>
+          </div>
         </aside>
       </section>
     </main>
@@ -456,6 +490,7 @@
           <a href="./articles.html?category=事業者の声">事業者の声</a>
           <a href="./businesses.html">会員企業一覧</a>
           <a href="./plans.html">掲載プラン</a>
+          <a href="./nyukai.html">入会案内</a>
           <a href="#contact">相談窓口</a>
         </nav>
       </div>
@@ -463,6 +498,6 @@
     </footer>
 
     <script src="./data.js?v=20260707-plan10-1"></script>
-    <script src="./home.js?v=20260710-demo1"></script>
+    <script src="./home.js?v=20260715-demo1"></script>
   </body>
 </html>

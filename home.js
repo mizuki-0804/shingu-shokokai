@@ -444,4 +444,15 @@
       { passive: true }
     );
   }
+
+  /* ============ かんたん相談フォーム（デモ送信） ============ */
+  const homeContactForm = qs("#home-contact-form");
+  const homeFormDone = qs("#home-form-done");
+  homeContactForm?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!homeContactForm.reportValidity()) return;
+    homeContactForm.hidden = true;
+    homeFormDone.hidden = false;
+    homeFormDone.scrollIntoView({ block: "center", behavior: "smooth" });
+  });
 })();
