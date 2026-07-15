@@ -137,6 +137,11 @@
   color: #2c2a22;
 }
 
+/* .article-foot / .related が続かないページでは、フッターとの間に余白を確保する */
+main > .article-body:last-child {
+  padding-bottom: clamp(52px, 9vh, 96px);
+}
+
 .article-body > * + * { margin-top: 1.7em; }
 
 .article-body .lead {
