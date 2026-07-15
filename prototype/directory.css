@@ -766,14 +766,16 @@ body > .page-progress:not(:has(i)),
   color: var(--blue);
 }
 
+.download-card-body {
+  min-width: 0;
+}
+
 .download-card-body h3 {
   margin-top: 6px;
   font-family: var(--font-display);
   font-size: var(--fs-h3);
   font-weight: 900;
   letter-spacing: 0.03em;
-  word-break: keep-all;
-  overflow-wrap: break-word;
 }
 
 .download-card-body > p:last-child {
