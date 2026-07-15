@@ -2738,13 +2738,16 @@ main, .site-footer, .site-header, .mobile-menu {
   font-style: normal;
 }
 
-@media (min-width: 980px) {
-  .contact:not(.contact-single) {
-    grid-template-columns: 1.05fr 1fr;
-  }
+.contact-form-panel {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
 
-  .contact-single .contact-info {
-    max-width: 640px;
+@media (min-width: 980px) {
+  .contact {
+    grid-template-columns: 1fr 1.1fr;
+    align-items: start;
   }
 }
 

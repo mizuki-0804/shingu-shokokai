@@ -17,7 +17,8 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./home.css?v=20260715-demo1" />
+    <link rel="stylesheet" href="./home.css?v=20260715-demo2" />
+    <link rel="stylesheet" href="./directory.css?v=20260710-demo5" />
   </head>
   <body class="home">
     <!-- Opening -->
@@ -414,7 +415,7 @@
       </section>
 
       <!-- ============ CONTACT / APPLY ============ -->
-      <section id="contact" class="contact contact-single" aria-labelledby="contact-title">
+      <section id="contact" class="contact" aria-labelledby="contact-title">
         <div class="contact-info">
           <p class="section-eyebrow" data-reveal><em>ACCESS / CONTACT</em>相談窓口</p>
           <h2 id="contact-title" data-reveal>相談・問い合わせ窓口</h2>
@@ -430,10 +431,47 @@
           </dl>
           <div class="contact-actions" data-reveal>
             <a class="button-ghost" href="http://www.shinguumachi.or.jp/about" target="_blank" rel="noreferrer"><span>アクセスを見る</span><i aria-hidden="true">↗</i></a>
-            <a class="button-primary" href="./contact.html"><span>商工会へ相談する</span><i aria-hidden="true">→</i></a>
+            <a class="button-primary" href="./contact.html"><span>専用ページで相談する</span><i aria-hidden="true">→</i></a>
           </div>
           <a class="apply-plans" href="./plans.html" data-reveal>お店・会社の掲載プランを見る<i aria-hidden="true">→</i></a>
         </div>
+
+        <aside class="contact-form-panel" data-reveal>
+          <p class="section-eyebrow"><em>QUICK FORM</em>かんたん相談フォーム</p>
+          <form class="contact-form" id="home-contact-form" novalidate>
+            <label for="hcf-name">
+              <span class="label-text">お名前 <em class="req" aria-hidden="true">必須</em></span>
+              <input type="text" id="hcf-name" name="name" required autocomplete="name" placeholder="例）新宮 太郎" />
+            </label>
+            <label for="hcf-company">
+              事業者名・屋号（任意）
+              <input type="text" id="hcf-company" name="company" autocomplete="organization" placeholder="例）しんぐうベーカリー" />
+            </label>
+            <label for="hcf-contact">
+              <span class="label-text">ご連絡先（メールまたは電話） <em class="req" aria-hidden="true">必須</em></span>
+              <input type="text" id="hcf-contact" name="contact" required placeholder="例）info@example.com / 092-000-0000" />
+            </label>
+            <fieldset class="cf-types" id="hcf-types">
+              <legend>相談の種類 <span class="hint">（複数選択可）</span></legend>
+              <label class="cf-check"><input type="checkbox" name="type" value="経営相談" /><span>経営相談（資金繰り・販路など）</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="創業" /><span>創業・開業の相談</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="pr" /><span>お店・会社の掲載やPR</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="入会" /><span>商工会への入会</span></label>
+              <label class="cf-check"><input type="checkbox" name="type" value="その他" /><span>その他</span></label>
+            </fieldset>
+            <label for="hcf-body">
+              <span class="label-text">ご相談内容 <em class="req" aria-hidden="true">必須</em></span>
+              <textarea id="hcf-body" name="body" required placeholder="いま困っていること、相談したいことをご記入ください。"></textarea>
+            </label>
+            <p class="contact-note">※ これはデモ画面です。送信ボタンを押しても実際には送信されません。</p>
+            <button class="button primary contact-submit" type="submit"><span>この内容で相談する</span></button>
+          </form>
+          <div class="form-done" id="home-form-done" hidden>
+            <p class="fd-mark" aria-hidden="true">✓</p>
+            <h3>ご相談を受け付けました（デモ）</h3>
+            <p>本番環境では、ここで受付完了メールが届き、担当者から2営業日以内にご連絡します。</p>
+          </div>
+        </aside>
       </section>
     </main>
 
@@ -457,6 +495,6 @@
     </footer>
 
     <script src="./data.js?v=20260707-plan10-1"></script>
-    <script src="./home.js?v=20260710-demo1"></script>
+    <script src="./home.js?v=20260715-demo1"></script>
   </body>
 </html>
