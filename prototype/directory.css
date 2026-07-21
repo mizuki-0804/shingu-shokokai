@@ -831,6 +831,7 @@ body > .page-progress:not(:has(i)),
   display: grid;
   gap: clamp(24px, 3.4vw, 36px) clamp(18px, 2.6vw, 28px);
   grid-template-columns: repeat(2, 1fr);
+  padding-bottom: clamp(52px, 9vh, 96px);
 }
 
 @media (min-width: 640px) {
