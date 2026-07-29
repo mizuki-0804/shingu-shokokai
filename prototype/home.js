@@ -168,6 +168,36 @@
     play();
   }
 
+  /* ============ 特集記事スライダー ============ */
+  const leadSlides = qsa(".lead-slider .lead-story");
+  const leadDots = qsa(".lead-slider-dots button");
+  const LEAD_SLIDE_MS = 7000;
+  if (leadSlides.length > 1) {
+    let leadActive = 0;
+    let leadTimer = null;
+
+    const showLead = (index) => {
+      leadActive = (index + leadSlides.length) % leadSlides.length;
+      leadSlides.forEach((s, i) => s.classList.toggle("is-active", i === leadActive));
+      leadDots.forEach((b, i) => b.classList.toggle("is-active", i === leadActive));
+    };
+
+    const playLead = () => {
+      window.clearInterval(leadTimer);
+      if (!prefersReduced) leadTimer = window.setInterval(() => showLead(leadActive + 1), LEAD_SLIDE_MS);
+    };
+
+    leadDots.forEach((b) => {
+      b.addEventListener("click", () => {
+        showLead(Number(b.dataset.slide || 0));
+        playLead();
+      });
+    });
+
+    showLead(0);
+    playLead();
+  }
+
   /* ============ 業種ドック（プルダウンで businesses.html?category=X へ遷移） ============ */
   const dockCategory = qs("#dock-category");
   dockCategory?.addEventListener("change", () => {
