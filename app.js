@@ -142,13 +142,18 @@ function planTierClass(planRank) {
   return "plan-tier-pending";
 }
 
+// 10万円・5万円プラン（planRank 3未満）のみ、記事のような詳しい紹介ページに飛べる
+function hasDetailPage(business) {
+  return business.planRank < 3;
+}
+
 function businessCard(business, options = {}) {
-  const detailLink = business.detailPage
+  const detailLink = hasDetailPage(business)
     ? `<a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>`
     : `<span class="card-note">基本情報のみ掲載</span>`;
 
   return `
-    <article class="business-card ${planTierClass(business.planRank)} ${business.detailPage ? "premium" : ""}">
+    <article class="business-card ${planTierClass(business.planRank)} ${hasDetailPage(business) ? "premium" : ""}">
       <img src="${business.image}" alt="${business.name}のイメージ写真" loading="lazy">
       <div class="business-card-body">
         <span class="plan-badge">${business.plan}</span>
@@ -184,7 +189,7 @@ function adCard(slot, options = {}) {
         <p class="business-meta">${business.category} / ${business.area}</p>
         <div class="card-links">
           ${externalLinks(business, true)}
-          ${business.detailPage ? `<a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>` : ""}
+          ${hasDetailPage(business) ? `<a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>` : ""}
         </div>
       </div>
     </article>
@@ -523,18 +528,36 @@ function renderDetailPage() {
   if (!detail) return;
 
   const params = new URLSearchParams(window.location.search);
-  const id = params.get("id") || businesses.find((business) => business.detailPage)?.id;
-  const business = businesses.find((item) => item.id === id && item.detailPage);
+  const id = params.get("id") || businesses.find((business) => hasDetailPage(business))?.id;
+  const business = businesses.find((item) => item.id === id && hasDetailPage(item));
 
   if (!business) {
     detail.innerHTML = `
       <section class="section">
         <p class="empty">この企業の詳しい紹介ページは現在準備中です。</p>
-        <a class="button primary" href="./businesses.html">会員企業一覧へ戻る</a>
+        <a class="button primary" href="./businesses.html">新宮町の企業一覧へ戻る</a>
       </section>
     `;
     return;
   }
+
+  const galleryImages = business.gallery || [];
+  const businessCases = business.cases || [];
+
+  const gallerySection = galleryImages.length
+    ? `
+    <section class="section gallery-section">
+      <div class="section-heading">
+        <p class="eyebrow">Photo Gallery</p>
+        <h2>写真ギャラリー</h2>
+        <p>お店や会社の雰囲気、商品・サービスの様子を写真で確認できます。</p>
+      </div>
+      <div class="gallery-grid">
+        ${galleryImages.map((image, index) => `<img src="${image}" alt="${business.name} 写真${index + 1}" loading="lazy">`).join("")}
+      </div>
+    </section>
+  `
+    : "";
 
   const mediaBlock = business.video
     ? `<div class="video-frame">
@@ -545,6 +568,30 @@ function renderDetailPage() {
         <h2>取材記事として読める紹介枠</h2>
         <p>写真、事例、相談できる内容をまとめ、初めて見る人にも事業内容が伝わる構成にしています。</p>
       </div>`;
+
+  const caseSection = businessCases.length
+    ? `
+    <section class="section video-case-section">
+      ${mediaBlock}
+      <div>
+        <p class="eyebrow">Works / Products</p>
+        <h2>施工事例・商品紹介</h2>
+        <div class="case-list">
+          ${businessCases
+            .map(
+              (item) => `
+            <article>
+              <h3>${item.title}</h3>
+              <p>${item.text}</p>
+            </article>
+          `
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+  `
+    : "";
 
   detail.innerHTML = `
     <section class="detail-hero">
@@ -580,35 +627,8 @@ function renderDetailPage() {
         ${business.instagram ? `<a href="${business.instagram}" target="_blank" rel="noreferrer">Instagram</a>` : ""}
       </aside>
     </section>
-    <section class="section gallery-section">
-      <div class="section-heading">
-        <p class="eyebrow">Photo Gallery</p>
-        <h2>写真ギャラリー</h2>
-        <p>お店や会社の雰囲気、商品・サービスの様子を写真で確認できます。</p>
-      </div>
-      <div class="gallery-grid">
-        ${business.gallery.map((image, index) => `<img src="${image}" alt="${business.name} 写真${index + 1}" loading="lazy">`).join("")}
-      </div>
-    </section>
-    <section class="section video-case-section">
-      ${mediaBlock}
-      <div>
-        <p class="eyebrow">Works / Products</p>
-        <h2>施工事例・商品紹介</h2>
-        <div class="case-list">
-          ${business.cases
-            .map(
-              (item) => `
-            <article>
-              <h3>${item.title}</h3>
-              <p>${item.text}</p>
-            </article>
-          `
-            )
-            .join("")}
-        </div>
-      </div>
-    </section>
+    ${gallerySection}
+    ${caseSection}
   `;
 
   prepareMotionItems(detail);
