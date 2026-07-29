@@ -340,18 +340,9 @@
       .join("");
   }
 
-  /* ============ 加盟企業ロゴ（無限スライダー） ============ */
-  const logoMono = (name) => {
-    const num = name.match(/(\d+)\s*$/);
-    return num ? num[1] : name.slice(0, 1);
-  };
-  const buildLogos = (list) =>
-    list
-      .map(
-        (b) =>
-          `<span class="logo-chip"><span class="logo-mono">${logoMono(b.name)}</span><span class="logo-text">${b.name}</span></span>`
-      )
-      .join("");
+  /* ============ 加盟企業カード（無限スライダー） ============ */
+  // ロゴ用に別デザインを作らず、businesses.html と同じカード（businessCard、共通部品はdata.js）をそのまま流す
+  const buildCards = (list) => list.map((b) => businessCard(b, { compact: true })).join("");
   const trackA = qs("#members-track-a");
   const trackB = qs("#members-track-b");
   if (trackA && trackB && businesses.length) {
@@ -359,8 +350,8 @@
     const rowA = businesses.slice(0, half);
     const rowB = businesses.slice(half);
     // 2セット並べてシームレスにループ
-    trackA.innerHTML = buildLogos(rowA).repeat(2);
-    trackB.innerHTML = buildLogos(rowB.length ? rowB : rowA).repeat(2);
+    trackA.innerHTML = buildCards(rowA).repeat(2);
+    trackB.innerHTML = buildCards(rowB.length ? rowB : rowA).repeat(2);
   }
 
   hydrateLikes();

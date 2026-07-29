@@ -430,3 +430,75 @@ window.SHINGU_DATA = {
     }
   ]
 };
+
+/* ============================================================
+   会員企業カードの共通部品
+   businesses.html（app.js）と トップページ（home.js）の両方で、
+   同じカードデザインをそのまま使い回すための共通関数。
+   ============================================================ */
+function mapUrl(business) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(business.address)}`;
+}
+
+function isCallablePhone(phone) {
+  return /^[0-9-]+$/.test(phone);
+}
+
+function phoneMarkup(phone) {
+  return isCallablePhone(phone) ? `<a href="tel:${phone}">${phone}</a>` : phone;
+}
+
+function externalLinks(business, compact = false) {
+  const links = [
+    business.website
+      ? `<a href="${business.website}" target="_blank" rel="noreferrer">公式サイト</a>`
+      : "",
+    `<a href="${mapUrl(business)}" target="_blank" rel="noreferrer">Googleマップ</a>`,
+    business.instagram
+      ? `<a href="${business.instagram}" target="_blank" rel="noreferrer">Instagram</a>`
+      : "",
+    compact || !isCallablePhone(business.phone) ? "" : `<a href="tel:${business.phone}">電話</a>`
+  ];
+  return links.filter(Boolean).join("");
+}
+
+function planTierClass(planRank) {
+  if (planRank < 2) return "plan-tier-10";
+  if (planRank < 3) return "plan-tier-5";
+  if (planRank < 4) return "plan-tier-3";
+  if (planRank < 5) return "plan-tier-1";
+  return "plan-tier-pending";
+}
+
+// 10万円・5万円プラン（planRank 3未満）のみ、記事のような詳しい紹介ページに飛べる
+function hasDetailPage(business) {
+  return business.planRank < 3;
+}
+
+function businessCard(business, options = {}) {
+  const detailLink = hasDetailPage(business)
+    ? `<a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>`
+    : `<span class="card-note">基本情報のみ掲載</span>`;
+
+  return `
+    <article class="business-card ${planTierClass(business.planRank)} ${hasDetailPage(business) ? "premium" : ""}">
+      <img src="${business.image}" alt="${business.name}のイメージ写真" loading="lazy">
+      <div class="business-card-body">
+        <span class="plan-badge">${business.plan}</span>
+        <h3>${business.name}</h3>
+        <p class="business-meta">${business.category} / ${business.area}</p>
+        <p>${business.catchcopy}</p>
+        ${options.compact ? "" : `
+          <dl class="card-info">
+            <div><dt>所在地</dt><dd>${business.address}</dd></div>
+            <div><dt>電話</dt><dd>${phoneMarkup(business.phone)}</dd></div>
+          </dl>
+        `}
+        <div class="card-links">
+          ${externalLinks(business, options.compact)}
+          ${detailLink}
+        </div>
+      </div>
+    </article>
+  `;
+}

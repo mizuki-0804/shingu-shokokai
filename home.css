@@ -2376,14 +2376,15 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .members-track {
   display: flex;
-  gap: 12px;
+  align-items: stretch;
+  gap: 16px;
   width: max-content;
-  animation: ticker 44s linear infinite;
+  animation: ticker 60s linear infinite;
 }
 
 .members-track.reverse {
   animation-direction: reverse;
-  animation-duration: 52s;
+  animation-duration: 70s;
 }
 
 .members-marquee:hover .members-track,
@@ -2391,53 +2392,14 @@ main, .site-footer, .site-header, .mobile-menu {
   animation-play-state: paused;
 }
 
-.logo-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
+/* 加盟企業カード（businesses.html と同じ .business-card をそのまま流用） */
+.members-track .business-card {
   flex: none;
-  padding: 15px 24px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  transition: border-color 0.3s, background 0.3s;
+  width: 240px;
 }
 
-.logo-mono {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  flex: none;
-  background: var(--paper-deep);
-  color: var(--muted);
-  font-family: var(--font-en);
-  font-size: 13px;
-  font-weight: 600;
-  transition: background 0.3s, color 0.3s;
-}
-
-.logo-text {
-  font-family: var(--font-display);
-  font-size: 14.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  white-space: nowrap;
-  transition: color 0.3s;
-}
-
-.logo-chip:hover {
-  border-color: var(--blue);
-}
-
-.logo-chip:hover .logo-mono {
-  background: var(--blue);
-  color: #fff;
-}
-
-.logo-chip:hover .logo-text {
-  color: var(--ink);
+.members-track .business-card .card-links {
+  display: none;
 }
 
 /* ============================================================
