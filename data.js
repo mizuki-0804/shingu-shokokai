@@ -475,13 +475,28 @@ function hasDetailPage(business) {
   return business.planRank < 3;
 }
 
+// 1万円プラン（掲載準備中を含む）は、ロゴと社名だけの最小カード。
+// 自社サイトがあればそのままサイトへ、無ければ最小限の紹介ページへ飛ぶ。
+function minimalBusinessCard(business) {
+  const href = business.website || `./business-detail.html?id=${business.id}`;
+  const isExternal = Boolean(business.website);
+  return `
+    <a class="business-card minimal-card" href="${href}"${isExternal ? ' target="_blank" rel="noreferrer"' : ""}>
+      <img src="${business.image}" alt="${business.name}のロゴ" loading="lazy">
+      <div class="business-card-body">
+        <h3>${business.name}</h3>
+      </div>
+    </a>
+  `;
+}
+
 function businessCard(business, options = {}) {
-  const detailLink = hasDetailPage(business)
-    ? `<a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>`
-    : `<span class="card-note">基本情報のみ掲載</span>`;
+  if (!hasDetailPage(business)) {
+    return minimalBusinessCard(business);
+  }
 
   return `
-    <article class="business-card ${planTierClass(business.planRank)} ${hasDetailPage(business) ? "premium" : ""}">
+    <article class="business-card ${planTierClass(business.planRank)} premium">
       <img src="${business.image}" alt="${business.name}のイメージ写真" loading="lazy">
       <div class="business-card-body">
         <span class="plan-badge">${business.plan}</span>
@@ -496,7 +511,7 @@ function businessCard(business, options = {}) {
         `}
         <div class="card-links">
           ${externalLinks(business, options.compact)}
-          ${detailLink}
+          <a class="card-detail-link" href="./business-detail.html?id=${business.id}">詳しく見る</a>
         </div>
       </div>
     </article>

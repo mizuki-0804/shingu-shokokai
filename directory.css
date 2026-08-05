@@ -324,6 +324,55 @@ body > .page-progress:not(:has(i)),
 .card-detail-link:hover { background: var(--blue) !important; color: #fff !important; }
 .card-note { font-size: 12px; color: var(--muted); }
 
+/* 1万円プラン：ロゴと社名だけの最小カード */
+.business-card.minimal-card {
+  text-align: center;
+  cursor: pointer;
+}
+.business-card.minimal-card > img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.business-card.minimal-card .business-card-body {
+  justify-items: center;
+  padding: clamp(14px, 1.6vw, 18px);
+}
+.business-card.minimal-card h3 {
+  font-size: 15px;
+}
+
+/* 1万円プラン（自社サイト無し）の最小紹介ページ */
+.minimal-detail {
+  max-width: 720px;
+}
+.minimal-detail h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 900;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line-strong);
+  margin-bottom: 20px;
+}
+.minimal-detail p {
+  font-size: 14px;
+  line-height: 2;
+  color: #43403a;
+}
+.minimal-detail-person {
+  color: var(--muted);
+}
+.minimal-detail-phone {
+  font-weight: 700;
+}
+.minimal-detail-banner {
+  margin: 20px 0 14px;
+  padding: 10px 18px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
 /* プランで大きさを変える（10万円プランは大きく） */
 @media (min-width: 720px) {
   .business-card.plan-tier-10,
