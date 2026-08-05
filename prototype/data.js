@@ -178,8 +178,8 @@ window.SHINGU_DATA = {
       name: "さくら美容室",
       category: "美容",
       area: "美咲",
-      plan: "3万円プラン",
-      planRank: 3,
+      plan: "5万円プラン",
+      planRank: 2,
       detailPage: false,
       catchcopy: "家族で通える、落ち着いた雰囲気の美容室",
       description:
@@ -203,8 +203,8 @@ window.SHINGU_DATA = {
       name: "まちの電器店",
       category: "小売",
       area: "夜臼",
-      plan: "1万円プラン",
-      planRank: 4,
+      plan: "5万円プラン",
+      planRank: 2,
       detailPage: false,
       catchcopy: "家電の購入から設置、ちょっとした相談まで",
       description:
@@ -228,8 +228,8 @@ window.SHINGU_DATA = {
       name: "新宮デザイン印刷",
       category: "サービス",
       area: "緑ケ浜",
-      plan: "1万円プラン",
-      planRank: 4,
+      plan: "5万円プラン",
+      planRank: 2,
       detailPage: false,
       catchcopy: "チラシ、名刺、ポスター制作を相談できる印刷サービス",
       description:
