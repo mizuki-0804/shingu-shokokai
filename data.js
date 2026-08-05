@@ -496,7 +496,7 @@ function businessCard(business, options = {}) {
   }
 
   return `
-    <article class="business-card ${planTierClass(business.planRank)} premium">
+    <article class="business-card ${planTierClass(business.planRank)} ${business.planRank < 2 ? "premium" : ""}">
       <img src="${business.image}" alt="${business.name}のイメージ写真" loading="lazy">
       <div class="business-card-body">
         <span class="plan-badge">${business.plan}</span>
