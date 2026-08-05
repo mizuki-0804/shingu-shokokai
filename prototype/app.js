@@ -257,6 +257,12 @@ function renderRanking() {
     .join("");
 }
 
+function renderDirCount() {
+  const el = qs("#dir-count-num");
+  if (!el) return;
+  el.textContent = String(businesses.length);
+}
+
 function renderBusinessPreview() {
   const preview = qs("#business-preview-list");
   if (!preview) return;
@@ -462,7 +468,7 @@ function renderDetailPage() {
 
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id") || businesses.find((business) => hasDetailPage(business))?.id;
-  const business = businesses.find((item) => item.id === id && hasDetailPage(item));
+  const business = businesses.find((item) => item.id === id);
 
   if (!business) {
     detail.innerHTML = `
@@ -471,6 +477,21 @@ function renderDetailPage() {
         <a class="button primary" href="./businesses.html">新宮町の企業一覧へ戻る</a>
       </section>
     `;
+    return;
+  }
+
+  if (!hasDetailPage(business)) {
+    detail.innerHTML = `
+      <section class="section minimal-detail">
+        <h1>${business.name}</h1>
+        ${business.contactPerson ? `<p class="minimal-detail-person">新宮町商工会　${business.contactPerson}</p>` : ""}
+        <p>住所：${business.address}</p>
+        <p class="minimal-detail-phone">電話：${phoneMarkup(business.phone)}</p>
+        <div class="minimal-detail-banner">業種・事業内容</div>
+        <p>${business.category}　${business.description}</p>
+      </section>
+    `;
+    prepareMotionItems(detail);
     return;
   }
 
@@ -729,6 +750,7 @@ renderSeries();
 renderRanking();
 renderAdSlots();
 renderBusinessPreview();
+renderDirCount();
 setupFilters();
 hydrateListQuery();
 setupHeroSearch();
