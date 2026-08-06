@@ -2229,8 +2229,9 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .directory-count span {
-  font-size: 12.5px;
-  line-height: 1.8;
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 
