@@ -11,6 +11,10 @@
   const data = window.SHINGU_DATA || { businesses: [], features: [], interviews: [] };
   const businesses = [...data.businesses].sort((a, b) => a.planRank - b.planRank);
 
+  /* ディレクトリの「掲載中の企業」数は実際の掲載件数に連動させる */
+  const directoryCountEl = qs("#directory-count-num");
+  if (directoryCountEl) directoryCountEl.dataset.count = String(businesses.length);
+
   /* ============ オープニング ============ */
   const opening = qs("#opening");
   const OPENING_KEY = "shingu-opening-seen";
