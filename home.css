@@ -827,46 +827,10 @@ main, .site-footer, .site-header, .mobile-menu {
   to { transform: scaleY(1); }
 }
 
-.hero-scroll {
-  position: absolute;
-  z-index: 3;
-  left: clamp(16px, 3vw, 40px);
-  bottom: 26px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-en);
-  font-size: var(--fs-2xs);
-  letter-spacing: 0.32em;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.hero-scroll i {
-  width: 56px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.4);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-scroll i::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  animation: scroll-hint 2.2s var(--ease-soft) infinite;
-}
-
-@keyframes scroll-hint {
-  0% { transform: translateX(-100%); }
-  55% { transform: translateX(0); }
-  100% { transform: translateX(102%); }
-}
 
 @media (max-width: 760px) {
-  /* 狭い画面ではスライド番号・スクロール表示が本文と重なるため非表示 */
-  .hero-progress,
-  .hero-scroll {
+  /* 狭い画面ではスライド番号が本文と重なるため非表示 */
+  .hero-progress {
     display: none;
   }
   .hero-kicker em {
