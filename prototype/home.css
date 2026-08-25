@@ -21,6 +21,10 @@
   --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --header-h: 72px;
+  /* 検索欄(.search-dock)がFVに食い込む量。
+     FVの下余白(.hero-inner の padding-bottom)は必ずこれより大きくすること。
+     小さいと、食い込んだ白いパネルがFVのボタンを覆ってしまう。 */
+  --dock-lift: 40px;
   --gutter: clamp(20px, 5vw, 72px);
   /* 見出しの統一タイプスケール */
   /* ============================================================
@@ -620,7 +624,7 @@ main, .site-footer, .site-header, .mobile-menu {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: calc(var(--header-h) + 40px) var(--gutter) clamp(48px, 7vh, 80px);
+  padding: calc(var(--header-h) + 40px) var(--gutter) calc(var(--dock-lift) + clamp(20px, 2.6vh, 28px));
   max-width: 1240px;
   margin-inline: auto;
 }
@@ -870,7 +874,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .search-dock {
   position: relative;
   z-index: 4;
-  margin: -74px var(--gutter) 0;
+  margin: calc(-1 * var(--dock-lift)) var(--gutter) 0;
 }
 
 .dock-form {
@@ -1030,8 +1034,9 @@ main, .site-footer, .site-header, .mobile-menu {
   overflow: hidden;
   border-left: 1px solid var(--line-strong);
   padding-left: 18px;
-  -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
-  mask-image: linear-gradient(90deg, #000 88%, transparent);
+  /* 左右どちらの端でも文字が途中で切れて見えないよう、両側をぼかす */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 88%, transparent);
 }
 
 .newsline-track ul {
