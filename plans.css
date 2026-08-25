@@ -15,7 +15,7 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-en);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.24em;
   color: var(--blue);
@@ -48,7 +48,7 @@
 }
 .plans-hero p {
   margin-top: 16px;
-  font-size: 15px;
+  font-size: var(--fs-base);
   line-height: 2;
   color: var(--muted);
   max-width: 640px;
@@ -79,7 +79,7 @@
 
 .plan-card-badge {
   justify-self: start;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   padding: 5px 13px;
@@ -90,19 +90,19 @@
 .plan-card-price {
   font-family: var(--font-en);
   font-weight: 600;
-  font-size: clamp(30px, 4vw, 40px);
+  font-size: var(--fs-num-sm);
   line-height: 1.1;
   color: var(--ink);
 }
 .plan-card-price span {
   font-family: var(--font-sans);
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: var(--muted);
   margin-left: 4px;
 }
 .plan-card-slots {
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--vermilion);
@@ -118,7 +118,7 @@
 .plan-card li {
   position: relative;
   padding-left: 22px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: 1.7;
   color: #43403a;
 }
@@ -136,7 +136,7 @@
   margin-top: 4px;
   padding-top: 12px;
   border-top: 1px solid var(--line);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
@@ -154,7 +154,7 @@
   background: var(--gold);
   color: var(--ink);
   font-family: var(--font-en);
-  font-size: 10px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.14em;
   padding: 4px 12px;
@@ -174,7 +174,7 @@
   width: 100%;
   min-width: 640px;
   border-collapse: collapse;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
 }
 .plan-table th,
 .plan-table td {
@@ -210,7 +210,7 @@
 
 .plan-example-link {
   margin-top: 18px;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   color: var(--muted);
   line-height: 1.9;
 }
@@ -246,18 +246,18 @@
 .plan-flow li::before {
   content: counter(flow, decimal-leading-zero);
   font-family: var(--font-en);
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--gold);
 }
 .plan-flow strong {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: 0.03em;
 }
-.plan-flow p { font-size: 12.5px; line-height: 1.85; color: var(--muted); }
+.plan-flow p { font-size: var(--fs-xs); line-height: 1.85; color: var(--muted); }
 
 /* ---- CTA ---- */
 .plan-cta {
@@ -272,7 +272,7 @@
 }
 .plan-cta > p {
   font-family: var(--font-display);
-  font-size: clamp(19px, 2.6vw, 24px);
+  font-size: var(--fs-h3);
   font-weight: 900;
   letter-spacing: 0.04em;
 }
@@ -281,7 +281,7 @@
   background: var(--gold);
   color: var(--ink);
   padding: 15px 28px;
-  font-size: 14px;
+  font-size: var(--fs-base);
   font-weight: 700;
   letter-spacing: 0.08em;
   transition: transform 0.3s var(--ease-out), background 0.3s;
@@ -294,7 +294,7 @@
   border: 1px solid rgba(246,244,236,.5);
   color: var(--paper);
   padding: 15px 24px;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.04em;
   transition: background 0.3s, color 0.3s;
@@ -312,7 +312,7 @@
 .plan-notes li {
   position: relative;
   padding-left: 18px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   line-height: 1.8;
 }
