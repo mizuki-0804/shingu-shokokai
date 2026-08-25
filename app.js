@@ -277,10 +277,20 @@ function renderBusinessList() {
   const results = filteredBusinesses();
   if (resultCount) resultCount.textContent = `${results.length}件`;
 
+  // 詳しい紹介ページを持つプラン（10万円・5万円）はカードで、
+  // 1万円プランはロゴだけを小さく並べる別の一覧で出す。
+  const carded = results.filter((business) => hasDetailPage(business));
+  const logos = results.filter((business) => !hasDetailPage(business));
+
   list.innerHTML =
     results.length > 0
-      ? results.map((business) => businessCard(business)).join("")
+      ? carded.map((business) => businessCard(business)).join("")
       : `<p class="empty">条件に合う事業者が見つかりませんでした。</p>`;
+
+  const wall = qs("#business-logo-wall");
+  const wallBlock = qs("#logo-wall-block");
+  if (wall) wall.innerHTML = logos.map((business) => logoTile(business)).join("");
+  if (wallBlock) wallBlock.hidden = logos.length === 0;
 
   prepareMotionItems(list);
 }

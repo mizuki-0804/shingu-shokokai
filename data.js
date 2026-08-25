@@ -475,24 +475,25 @@ function hasDetailPage(business) {
   return business.planRank < 3;
 }
 
-// 1万円プラン（掲載準備中を含む）は、ロゴと社名だけの最小カード。
+// 1万円プラン（掲載準備中を含む）は、会社のロゴだけを小さく並べる。
+// ロゴが無い会社は、社名だけをそのまま出す。
 // 自社サイトがあればそのままサイトへ、無ければ最小限の紹介ページへ飛ぶ。
-function minimalBusinessCard(business) {
+function logoTile(business) {
   const href = business.website || `./business-detail.html?id=${business.id}`;
   const isExternal = Boolean(business.website);
+  const inner = business.logo
+    ? `<img class="logo-tile-img" src="${business.logo}" alt="${business.name}のロゴ" loading="lazy">`
+    : `<span class="logo-tile-name">${business.name}</span>`;
   return `
-    <a class="business-card minimal-card" href="${href}"${isExternal ? ' target="_blank" rel="noreferrer"' : ""}>
-      <img src="${business.image}" alt="${business.name}のロゴ" loading="lazy">
-      <div class="business-card-body">
-        <h3>${business.name}</h3>
-      </div>
+    <a class="logo-tile" href="${href}"${isExternal ? ' target="_blank" rel="noreferrer"' : ""} title="${business.name}">
+      ${inner}
     </a>
   `;
 }
 
 function businessCard(business, options = {}) {
   if (!hasDetailPage(business)) {
-    return minimalBusinessCard(business);
+    return logoTile(business);
   }
 
   return `

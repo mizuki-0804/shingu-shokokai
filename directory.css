@@ -334,21 +334,70 @@ body > .page-progress:not(:has(i)),
 .card-detail-link:hover { background: var(--blue) !important; color: #fff !important; }
 .card-note { font-size: var(--fs-xs); color: var(--muted); }
 
-/* 1万円プラン：ロゴと社名だけの最小カード */
-.business-card.minimal-card {
-  text-align: center;
-  cursor: pointer;
+/* 1万円プラン：会社のロゴだけを小さく並べる。ロゴが無ければ社名を出す。
+   有料プランのカードと同じ大きさにすると場所を取りすぎるので、
+   1枚104px前後の小さなタイルにして、スマホで3列・PCで10列前後並ぶようにする。 */
+.logo-wall-block {
+  margin-top: clamp(28px, 4vw, 44px);
+  padding-bottom: clamp(48px, 8vh, 90px);
 }
-.business-card.minimal-card > img {
+
+.logo-wall-label {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.logo-wall-label small {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.logo-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 12px;
+}
+
+.logo-tile {
+  display: grid;
+  place-items: center;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s;
 }
-.business-card.minimal-card .business-card-body {
-  justify-items: center;
-  padding: clamp(14px, 1.6vw, 18px);
+
+.logo-tile:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
 }
-.business-card.minimal-card h3 {
-  font-size: var(--fs-base);
+
+.logo-tile-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logo-tile-name {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
 }
 
 /* 1万円プラン（自社サイト無し）の最小紹介ページ */
