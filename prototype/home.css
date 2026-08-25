@@ -25,6 +25,14 @@
      FVの下余白(.hero-inner の padding-bottom)は必ずこれより大きくすること。
      小さいと、食い込んだ白いパネルがFVのボタンを覆ってしまう。 */
   --dock-lift: 40px;
+
+  /* 入力欄・選択欄の共通寸法。フォーム部品の高さはここだけで決める。
+     個々の場所で padding や line-height を上書きしないこと。
+     （以前はトップの業種選択59px / 相談フォーム57px / 絞り込み45px と
+       バラバラだった。原因はどれも body の line-height 1.9 の継承） */
+  --field-pad-y: 11px;
+  --field-pad-x: 14px;
+  --field-line: 1.6;
   --gutter: clamp(20px, 5vw, 72px);
   /* 見出しの統一タイプスケール */
   /* ============================================================
@@ -961,7 +969,8 @@ main, .site-footer, .site-header, .mobile-menu {
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
-  padding: 15px 40px 15px 18px;
+  padding: var(--field-pad-y) 38px var(--field-pad-y) var(--field-pad-x);
+  line-height: var(--field-line);
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
@@ -995,7 +1004,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
   .dock-select select {
     font-size: var(--fs-base);
-    padding: 14px 38px 14px 16px;
+    padding: var(--field-pad-y) 38px var(--field-pad-y) var(--field-pad-x);
   }
 }
 

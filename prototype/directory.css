@@ -111,8 +111,8 @@ body > .page-progress:not(:has(i)),
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
-  padding: 10px 14px;
-  line-height: 1.5;
+  padding: var(--field-pad-y) var(--field-pad-x);
+  line-height: var(--field-line);
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
@@ -669,7 +669,8 @@ body > .page-progress:not(:has(i)),
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
-  padding: 13px 14px;
+  padding: var(--field-pad-y) var(--field-pad-x);
+  line-height: var(--field-line);
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
@@ -677,9 +678,9 @@ body > .page-progress:not(:has(i)),
 }
 
 .contact-form textarea {
-  min-height: 170px;
+  min-height: 150px;
   resize: vertical;
-  line-height: 1.9;
+  line-height: var(--field-line);
 }
 
 .contact-form input:focus,
