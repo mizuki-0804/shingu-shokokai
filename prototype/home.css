@@ -585,19 +585,29 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .hero-giant {
+  /* FVを画面いっぱいから 620px 前後に縮めたため、下端に置くと
+     ボタン・スライド番号・その下の検索欄に重なってしまう。
+     見出しの右側にあいた空へ、ぶつからない大きさで置く。 */
   position: absolute;
-  right: -0.04em;
-  bottom: -0.14em;
+  right: clamp(16px, 3vw, 40px);
+  top: calc(var(--header-h) + 24px);
   z-index: 1;
   font-family: var(--font-en);
   font-weight: 600;
-  font-size: clamp(64px, 14vw, 200px);
+  font-size: clamp(44px, 7.6vw, 112px);
   line-height: 1;
   letter-spacing: 0.02em;
   color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.34);
   pointer-events: none;
   user-select: none;
+}
+
+/* 横幅900px以下では、見出しに重なるため出さない */
+@media (max-width: 900px) {
+  .hero-giant {
+    display: none;
+  }
 }
 
 /* スクロール視差(--sy) とポインター視差(--ppx) を合成 */
