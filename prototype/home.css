@@ -516,7 +516,9 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  /* 参考にした地域メディア（SMOUT は 1440x900 で 550px＝画面の61%）に合わせ、
+     1画面目にサイトの中身が入るようにする。画面いっぱいにはしない。 */
+  min-height: clamp(460px, 66svh, 620px);
   display: flex;
   align-items: flex-end;
   color: #fff;
@@ -570,7 +572,7 @@ main, .site-footer, .site-header, .mobile-menu {
   z-index: 1;
   font-family: var(--font-en);
   font-weight: 600;
-  font-size: clamp(96px, 22vw, 340px);
+  font-size: clamp(64px, 14vw, 200px);
   line-height: 1;
   letter-spacing: 0.02em;
   color: transparent;
@@ -589,7 +591,7 @@ main, .site-footer, .site-header, .mobile-menu {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: calc(var(--header-h) + 40px) var(--gutter) clamp(120px, 16vh, 170px);
+  padding: calc(var(--header-h) + 40px) var(--gutter) clamp(48px, 7vh, 80px);
   max-width: 1240px;
   margin-inline: auto;
 }
@@ -620,7 +622,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .hero-title {
-  font-size: clamp(40px, 8.4vw, 96px);
+  font-size: clamp(30px, 3.6vw, 48px);
   font-weight: 900;
   line-height: 1.22;
   letter-spacing: 0.04em;
