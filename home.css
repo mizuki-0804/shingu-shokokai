@@ -2393,14 +2393,34 @@ main, .site-footer, .site-header, .mobile-menu {
   animation-play-state: paused;
 }
 
-/* 加盟企業カード（businesses.html と同じ .business-card をそのまま流用） */
+/* 加盟企業の流れる帯。
+   businesses.html と同じ .business-card を流用しているが、あちらは
+   紹介文やプラン表示の有無でカードの中身の量がバラバラ。そのまま流すと
+   帯の中で高さが揃わず、短いカードが引き伸ばされて社名の下に大きな
+   空白ができる（スマホでは1枚395pxまで伸びていた）。
+   ここでは「写真と社名だけ」に絞って、全部同じ形にする。 */
 .members-track .business-card {
   flex: none;
-  width: 240px;
+  /* スマホでは画面の6割を1枚が占めてしまうため、画面幅に合わせて縮める */
+  width: clamp(132px, 38vw, 240px);
 }
 
-.members-track .business-card .card-links {
+.members-track .business-card > img {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.members-track .business-card .card-links,
+.members-track .business-card .plan-badge,
+.members-track .business-card .card-info,
+.members-track .business-card .business-card-body > p {
   display: none;
+}
+
+.members-track .business-card h3 {
+  font-size: var(--fs-base);
 }
 
 /* ============================================================
