@@ -345,8 +345,17 @@
   }
 
   /* ============ 加盟企業カード（無限スライダー） ============ */
-  // ロゴ用に別デザインを作らず、businesses.html と同じカード（businessCard、共通部品はdata.js）をそのまま流す
-  const buildCards = (list) => list.map((b) => businessCard(b, { compact: true })).join("");
+  // 帯は「写真と社名」だけの飾り。企業一覧側は掲載プランでカードの形が変わる
+  // （1万円プランはロゴだけ）ため、そちらの部品は使わず専用に描く。
+  const memberTile = (b) => `
+    <article class="business-card">
+      <img src="${b.image}" alt="${b.name}のイメージ写真" loading="lazy">
+      <div class="business-card-body">
+        <h3>${b.name}</h3>
+      </div>
+    </article>
+  `;
+  const buildCards = (list) => list.map(memberTile).join("");
   const trackA = qs("#members-track-a");
   const trackB = qs("#members-track-b");
   if (trackA && trackB && businesses.length) {

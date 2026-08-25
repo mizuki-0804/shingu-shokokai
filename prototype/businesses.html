@@ -11,9 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./home.css?v=20260825-8" />
-    <link rel="stylesheet" href="./article.css?v=20260825-8" />
-    <link rel="stylesheet" href="./directory.css?v=20260825-8" />
+    <link rel="stylesheet" href="./home.css?v=20260825-9" />
+    <link rel="stylesheet" href="./article.css?v=20260825-9" />
+    <link rel="stylesheet" href="./directory.css?v=20260825-9" />
   </head>
   <body class="home subpage">
     <div class="page-progress" aria-hidden="true"><i></i></div>
@@ -60,20 +60,12 @@
 
       <section class="dir-hero">
         <p class="eyebrow">Business Directory</p>
-        <h1>町内のお店・事業者を探す</h1>
-        <p class="dir-lead">暮らしや仕事で必要な地元の情報を、業種やエリアからすぐに探せます。企業名や所在地、連絡先、ホームページ、SNSまでまとめて確認できます。</p>
+        <h1>新宮町の企業一覧</h1>
+        <p class="dir-lead">業種やエリアから、町内のお店・会社を探せます。連絡先やホームページもまとめて確認できます。</p>
         <p class="dir-count"><strong id="dir-count-num">0</strong><span>このサイトに掲載中の企業</span></p>
       </section>
 
-      <section class="section businesses-section" aria-labelledby="business-list-title">
-        <div class="section-heading split-heading">
-          <div>
-            <p class="eyebrow">Search</p>
-            <h2 id="business-list-title">新宮町の企業一覧</h2>
-          </div>
-          <p>業種・エリアから絞り込めます。</p>
-        </div>
-
+      <section class="section businesses-section" aria-label="新宮町の企業一覧">
         <div class="filters" aria-label="絞り込み条件">
           <label>
             業種
@@ -104,8 +96,13 @@
           <span id="result-count">0件</span>
           <button id="reset-filters" type="button">条件をクリア</button>
         </div>
-        <p class="plan-size-note">掲載カードの大きさ・表示順は掲載プラン（10万円・5万円・1万円）によって変わります。1万円プランはロゴと社名のみの掲載です。</p>
+        <p class="plan-size-note">掲載カードの大きさ・表示順は掲載プラン（10万円・5万円・1万円）によって変わります。1万円プランはロゴ（無い場合は社名）のみの掲載です。</p>
         <div id="business-list" class="business-list directory-list"></div>
+
+        <div id="logo-wall-block" class="logo-wall-block" hidden>
+          <p class="logo-wall-label">1万円プラン<small>ロゴ（無い場合は社名）のみの掲載です</small></p>
+          <div id="business-logo-wall" class="logo-wall"></div>
+        </div>
       </section>
     </main>
 
@@ -151,7 +148,7 @@
         });
       })();
     </script>
-    <script src="./data.js?v=20260825-8"></script>
-    <script src="./app.js?v=20260825-8"></script>
+    <script src="./data.js?v=20260825-9"></script>
+    <script src="./app.js?v=20260825-9"></script>
   </body>
 </html>
