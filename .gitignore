@@ -10,3 +10,6 @@ docs/
 scripts/
 商工会/
 tmp/
+
+# 配布用の書き出しファイル（テーマ本体から作り直せるため履歴には残さない）
+wordpress-theme/*.zip

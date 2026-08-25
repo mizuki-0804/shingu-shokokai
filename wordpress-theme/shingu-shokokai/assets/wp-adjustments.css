@@ -1,0 +1,52 @@
+/*
+ * WordPress特有の調整（元の静的サイトのCSSはそのまま使い、ここでは
+ * WordPress管理バーとの重なりだけを直す）。
+ *
+ * .site-header は position: fixed; top: 0 で作られているため、
+ * ログイン中に出るWordPressの黒い管理バー（#wpadminbar、高さ32px/
+ * モバイル幅では46px）の下に隠れて、メニューが欠けて見えてしまう。
+ * 管理バーの高さぶんだけ下にずらして重なりを解消する。
+ */
+body.admin-bar .site-header {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  body.admin-bar .site-header {
+    top: 46px;
+  }
+}
+
+body.admin-bar .mobile-menu {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  body.admin-bar .mobile-menu {
+    top: 46px;
+  }
+}
+
+/*
+ * WordPressが出力する画像には width / height 属性が自動で付く。
+ * そのままだと、CSSで指定した縦横比（aspect-ratio）よりも属性の高さが
+ * 優先されてしまい、静的サイトと違う比率（縦に伸びた形）で表示される。
+ * 高さを自動に戻して、静的サイトと同じ見え方に揃える。
+ */
+.business-card > img,
+.card-media img,
+.rc-media img,
+.gallery-grid img,
+.article-cover img,
+.pr-gallery img,
+.lead-media img {
+  height: auto;
+}
+
+/* 10万円プランの大きいカードだけは、静的サイトと同じく高さいっぱいに伸ばす */
+@media (min-width: 720px) {
+  .business-card.plan-tier-10 > img,
+  .business-card.premium > img {
+    height: 100%;
+  }
+}

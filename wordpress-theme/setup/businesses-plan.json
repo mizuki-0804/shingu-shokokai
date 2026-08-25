@@ -1,0 +1,233 @@
+[
+  {
+    "id": "shingu-bakery",
+    "name": "しんぐうベーカリー",
+    "plan": "10万円プラン",
+    "planRank": 1,
+    "website": "https://example.com"
+  },
+  {
+    "id": "shingu-home-builder",
+    "name": "新宮住まい工務店",
+    "plan": "10万円プラン",
+    "planRank": 1.5,
+    "website": "https://example.com"
+  },
+  {
+    "id": "minato-seikotsu",
+    "name": "みなと整骨院",
+    "plan": "5万円プラン",
+    "planRank": 2,
+    "website": ""
+  },
+  {
+    "id": "sakura-hair",
+    "name": "さくら美容室",
+    "plan": "5万円プラン",
+    "planRank": 2,
+    "website": "https://example.com"
+  },
+  {
+    "id": "machi-electric",
+    "name": "まちの電器店",
+    "plan": "5万円プラン",
+    "planRank": 2,
+    "website": ""
+  },
+  {
+    "id": "shingu-print",
+    "name": "新宮デザイン印刷",
+    "plan": "5万円プラン",
+    "planRank": 2,
+    "website": "https://example.com"
+  },
+  {
+    "id": "member-07",
+    "name": "会員企業 07",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-08",
+    "name": "会員企業 08",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-09",
+    "name": "会員企業 09",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-10",
+    "name": "会員企業 10",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-11",
+    "name": "会員企業 11",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-12",
+    "name": "会員企業 12",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-13",
+    "name": "会員企業 13",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-14",
+    "name": "会員企業 14",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-15",
+    "name": "会員企業 15",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-16",
+    "name": "会員企業 16",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-17",
+    "name": "会員企業 17",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-18",
+    "name": "会員企業 18",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-19",
+    "name": "会員企業 19",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-20",
+    "name": "会員企業 20",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-21",
+    "name": "会員企業 21",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-22",
+    "name": "会員企業 22",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-23",
+    "name": "会員企業 23",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-24",
+    "name": "会員企業 24",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-25",
+    "name": "会員企業 25",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-26",
+    "name": "会員企業 26",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-27",
+    "name": "会員企業 27",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-28",
+    "name": "会員企業 28",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-29",
+    "name": "会員企業 29",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-30",
+    "name": "会員企業 30",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-31",
+    "name": "会員企業 31",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-32",
+    "name": "会員企業 32",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  },
+  {
+    "id": "member-33",
+    "name": "会員企業 33",
+    "plan": "掲載準備中",
+    "planRank": 5,
+    "website": ""
+  }
+]
