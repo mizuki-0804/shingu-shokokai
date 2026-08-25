@@ -23,9 +23,28 @@
   --header-h: 72px;
   --gutter: clamp(20px, 5vw, 72px);
   /* 見出しの統一タイプスケール */
-  --fs-h1: clamp(32px, 5.2vw, 56px);
-  --fs-h2: clamp(26px, 3.6vw, 40px);
-  --fs-h3: clamp(19px, 2.4vw, 25px);
+  /* ============================================================
+     文字サイズの物差し。サイトの文字はこの段階だけを使う。
+     直に 12.5px のような数値を書かないこと（バラつきの原因になる）。
+     ============================================================ */
+  --fs-2xs: 11px;    /* 英字の小ラベル、極小の注記 */
+  --fs-xs: 12px;     /* タグ、キャプション、補足 */
+  --fs-sm: 13px;     /* メタ情報、補助テキスト */
+  --fs-base: 15px;   /* 本文 */
+  --fs-md: 16px;     /* リード文、少し強い本文 */
+  --fs-lg: 18px;     /* カード見出し */
+  --fs-xl: 20px;     /* 中見出し */
+  --fs-2xl: 24px;    /* 大きめの小見出し */
+
+  --fs-h1: clamp(30px, 3.6vw, 48px);
+  --fs-h2: clamp(24px, 3vw, 34px);
+  --fs-h3: clamp(19px, 2.2vw, 24px);
+
+  /* 「大きい数字」の表示は2段階だけ。
+     --fs-num はページの主役になる数字（掲載件数・設立年など）、
+     --fs-num-sm はカードの中に入る数字（料金など）。 */
+  --fs-num: clamp(32px, 5.4vw, 64px);
+  --fs-num-sm: clamp(28px, 3.4vw, 40px);
 }
 
 * {
@@ -41,7 +60,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
-  font-size: 15.5px;
+  font-size: var(--fs-base);
   line-height: 1.9;
   letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
@@ -172,7 +191,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .opening-sub {
   font-family: var(--font-en);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.42em;
   color: var(--muted);
 }
@@ -294,13 +313,13 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .brand-text strong {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--fs-md);
   letter-spacing: 0.08em;
 }
 
 .brand-text small {
   font-family: var(--font-en);
-  font-size: 9.5px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.32em;
   color: var(--muted);
 }
@@ -328,7 +347,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .site-nav a {
   position: relative;
-  font-size: 15px;
+  font-size: var(--fs-base);
   font-weight: 500;
   letter-spacing: 0.06em;
   padding: 6px 0;
@@ -386,7 +405,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .nav-dropdown a {
   padding: 9px 14px;
   border-radius: 8px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   letter-spacing: 0.04em;
   white-space: nowrap;
   color: var(--ink);
@@ -415,7 +434,7 @@ main, .site-footer, .site-header, .mobile-menu {
   border-radius: 999px;
   background: var(--ink);
   color: var(--paper);
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 0.14em;
   transition: background 0.3s ease, transform 0.3s var(--ease-out);
@@ -479,7 +498,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .mobile-menu a {
   font-family: var(--font-display);
-  font-size: clamp(24px, 6vw, 32px);
+  font-size: var(--fs-2xl);
   font-weight: 700;
   padding: 10px 0;
   border-bottom: 1px solid var(--line);
@@ -600,7 +619,7 @@ main, .site-footer, .site-header, .mobile-menu {
   display: flex;
   align-items: center;
   gap: 14px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.22em;
   margin-bottom: clamp(18px, 3vh, 30px);
@@ -616,13 +635,13 @@ main, .site-footer, .site-header, .mobile-menu {
 .hero-kicker em {
   font-family: var(--font-en);
   font-style: normal;
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.3em;
   opacity: 0.75;
 }
 
 .hero-title {
-  font-size: clamp(30px, 3.6vw, 48px);
+  font-size: var(--fs-h1);
   font-weight: 900;
   line-height: 1.22;
   letter-spacing: 0.04em;
@@ -650,7 +669,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .hero-lead {
   margin-top: clamp(18px, 3vh, 28px);
-  font-size: clamp(14px, 1.7vw, 16.5px);
+  font-size: var(--fs-md);
   font-weight: 500;
   line-height: 2.1;
   letter-spacing: 0.06em;
@@ -706,13 +725,13 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .hero-panels span {
   font-family: var(--font-en);
-  font-size: 10.5px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.26em;
   opacity: 0.72;
 }
 
 .hero-panels strong {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   font-weight: 700;
   letter-spacing: 0.1em;
 }
@@ -764,7 +783,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .hero-progress button em {
   font-family: var(--font-en);
   font-style: normal;
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.14em;
 }
 
@@ -807,7 +826,7 @@ main, .site-footer, .site-header, .mobile-menu {
   align-items: center;
   gap: 10px;
   font-family: var(--font-en);
-  font-size: 10.5px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.32em;
   color: rgba(255, 255, 255, 0.85);
 }
@@ -902,7 +921,7 @@ main, .site-footer, .site-header, .mobile-menu {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 0.14em;
   word-break: keep-all;
@@ -919,7 +938,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .dock-label em {
   font-family: var(--font-en);
   font-style: normal;
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.28em;
   color: var(--blue);
 }
@@ -928,7 +947,7 @@ main, .site-footer, .site-header, .mobile-menu {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--muted);
@@ -958,7 +977,7 @@ main, .site-footer, .site-header, .mobile-menu {
   width: 100%;
   font: inherit;
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: var(--fs-base);
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--ink);
@@ -993,11 +1012,11 @@ main, .site-footer, .site-header, .mobile-menu {
   }
 
   .dock-all {
-    font-size: 12.5px;
+    font-size: var(--fs-xs);
   }
 
   .dock-select select {
-    font-size: 14.5px;
+    font-size: var(--fs-base);
     padding: 14px 38px 14px 16px;
   }
 }
@@ -1017,7 +1036,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .newsline h2 {
   display: grid;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.2em;
   line-height: 1.5;
@@ -1027,7 +1046,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .newsline h2 em {
   font-family: var(--font-en);
   font-style: normal;
-  font-size: 15px;
+  font-size: var(--fs-base);
   letter-spacing: 0.24em;
   color: var(--blue);
 }
@@ -1070,13 +1089,13 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .newsline-track time {
   font-family: var(--font-en);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   color: var(--muted);
 }
 
 .newsline-track a {
-  font-size: 14px;
+  font-size: var(--fs-base);
   font-weight: 500;
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 0 1px;
@@ -1094,7 +1113,7 @@ main, .site-footer, .site-header, .mobile-menu {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 0.1em;
 }
@@ -1130,7 +1149,7 @@ main, .site-footer, .site-header, .mobile-menu {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--muted);
@@ -1139,7 +1158,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .section-eyebrow em {
   font-family: var(--font-en);
   font-style: normal;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.32em;
   color: var(--blue);
 }
@@ -1165,7 +1184,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .section-heading > p {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   color: var(--muted);
   max-width: 560px;
 }
@@ -1193,7 +1212,7 @@ main, .site-footer, .site-header, .mobile-menu {
   align-items: center;
   gap: 12px;
   padding: 16px 30px;
-  font-size: 14px;
+  font-size: var(--fs-base);
   font-weight: 700;
   letter-spacing: 0.16em;
   overflow: hidden;
@@ -1297,7 +1316,7 @@ main, .site-footer, .site-header, .mobile-menu {
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: -4px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 0.14em;
 }
@@ -1305,13 +1324,13 @@ main, .site-footer, .site-header, .mobile-menu {
 .pickup-eyebrow i {
   font-style: normal;
   color: var(--gold);
-  font-size: 15px;
+  font-size: var(--fs-base);
 }
 
 .pickup-eyebrow em {
   font-family: var(--font-en);
   font-style: normal;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.3em;
   color: var(--blue);
 }
@@ -1333,7 +1352,7 @@ main, .site-footer, .site-header, .mobile-menu {
   display: none;
   writing-mode: vertical-rl;
   font-family: var(--font-display);
-  font-size: clamp(30px, 3.4vw, 46px);
+  font-size: var(--fs-h1);
   font-weight: 900;
   letter-spacing: 0.3em;
   color: var(--ink);
@@ -1363,7 +1382,7 @@ main, .site-footer, .site-header, .mobile-menu {
   background: var(--blue);
   color: #fff;
   font-family: var(--font-sans);
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   padding: 8px 16px;
@@ -1372,7 +1391,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .pickup-tag i {
   font-style: normal;
   color: var(--gold);
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: 1;
 }
 
@@ -1397,7 +1416,7 @@ main, .site-footer, .site-header, .mobile-menu {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11.5px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.1em;
   color: var(--muted);
 }
@@ -1411,7 +1430,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .pickup-eyecatch-title {
   font-family: var(--font-display);
-  font-size: clamp(21px, 2.6vw, 27px);
+  font-size: var(--fs-h3);
   font-weight: 900;
   line-height: 1.42;
   letter-spacing: 0.02em;
@@ -1442,7 +1461,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .pickup-lead {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   color: var(--muted);
   max-width: 460px;
 }
@@ -1470,13 +1489,13 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .pickup-list time {
   font-family: var(--font-en);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   color: var(--muted);
 }
 
 .pickup-list span {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   font-weight: 500;
 }
 
@@ -1604,7 +1623,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .role-num {
   font-family: var(--font-en);
-  font-size: clamp(15px, 2vw, 20px);
+  font-size: var(--fs-md);
   letter-spacing: 0.08em;
   color: var(--gold);
 }
@@ -1625,13 +1644,13 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .role-body strong {
   font-family: var(--font-display);
-  font-size: clamp(16px, 2.4vw, 22px);
+  font-size: var(--fs-lg);
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .role-body small {
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: 1.8;
   color: var(--muted);
   transition: color 0.45s;
@@ -1643,7 +1662,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .role-arrow {
-  font-size: clamp(20px, 3vw, 28px);
+  font-size: var(--fs-xl);
   transition: transform 0.45s var(--ease-out);
 }
 
@@ -1680,7 +1699,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .region-title p {
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.3em;
   color: var(--muted);
@@ -1745,7 +1764,7 @@ main, .site-footer, .site-header, .mobile-menu {
   background: var(--vermilion);
   color: #fff;
   font-family: var(--font-en);
-  font-size: 10.5px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.26em;
   padding: 8px 16px;
 }
@@ -1765,7 +1784,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .lead-body > p {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   color: var(--muted);
   max-width: 480px;
 }
@@ -1826,7 +1845,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .article-actions small {
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   color: var(--muted);
 }
@@ -1839,7 +1858,7 @@ main, .site-footer, .site-header, .mobile-menu {
   border-radius: 999px;
   background: none;
   padding: 7px 15px;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 500;
   color: var(--ink);
   transition: border-color 0.3s, background 0.3s, color 0.3s, transform 0.2s var(--ease-out);
@@ -1881,7 +1900,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .like-button strong {
   font-family: var(--font-en);
   font-weight: 600;
-  font-size: 13px;
+  font-size: var(--fs-sm);
 }
 
 .feature-grid {
@@ -1928,7 +1947,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .feature-card .card-meta span {
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.14em;
   color: var(--blue);
@@ -1939,20 +1958,20 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .feature-card .card-meta time {
   font-family: var(--font-en);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   color: var(--muted);
 }
 
 .feature-card h3 {
-  font-size: 17.5px;
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: 0.04em;
   line-height: 1.7;
 }
 
 .feature-card > p {
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: 1.9;
   color: var(--muted);
 }
@@ -2048,7 +2067,7 @@ main, .site-footer, .site-header, .mobile-menu {
   align-items: center;
   gap: 8px;
   margin-right: auto;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: rgba(246, 244, 236, 0.8);
@@ -2076,7 +2095,7 @@ main, .site-footer, .site-header, .mobile-menu {
   border: 1px solid rgba(246, 244, 236, 0.35);
   background: none;
   color: var(--paper);
-  font-size: 17px;
+  font-size: var(--fs-md);
   transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-out);
 }
 
@@ -2144,13 +2163,13 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .interview-card .card-body span {
   font-family: var(--font-en);
-  font-size: 10.5px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.3em;
   color: var(--gold);
 }
 
 .interview-card h3 {
-  font-size: 18px;
+  font-size: var(--fs-lg);
   font-weight: 700;
   letter-spacing: 0.05em;
   line-height: 1.7;
@@ -2160,7 +2179,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .interview-card blockquote {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: var(--fs-base);
   line-height: 2;
   color: rgba(246, 244, 236, 0.8);
 }
@@ -2174,7 +2193,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .interview-card .card-person {
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   color: rgba(246, 244, 236, 0.6);
   border-top: 1px solid rgba(246, 244, 236, 0.16);
@@ -2207,7 +2226,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .directory-intro > p:not(.directory-count) {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   color: var(--muted);
   max-width: 460px;
 }
@@ -2224,14 +2243,14 @@ main, .site-footer, .site-header, .mobile-menu {
 .directory-count strong {
   font-family: var(--font-en);
   font-weight: 500;
-  font-size: clamp(56px, 7vw, 88px);
+  font-size: var(--fs-num);
   line-height: 1.1;
   color: var(--blue);
   font-variant-numeric: tabular-nums;
 }
 
 .directory-count span {
-  font-size: 15px;
+  font-size: var(--fs-base);
   line-height: 1.9;
   letter-spacing: 0.02em;
   color: var(--muted);
@@ -2282,7 +2301,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .biz-plan {
   justify-self: start;
-  font-size: 10.5px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   padding: 3px 10px;
@@ -2302,19 +2321,19 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .biz-card h3 {
-  font-size: 16px;
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: 0.04em;
 }
 
 .biz-card .biz-meta {
-  font-size: 11.5px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.1em;
   color: var(--muted);
 }
 
 .biz-card .biz-copy {
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   line-height: 1.8;
   color: var(--muted);
 }
@@ -2355,7 +2374,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .members-note {
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   color: var(--muted);
   line-height: 1.9;
 }
@@ -2363,7 +2382,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .members-note small {
   display: block;
   margin-top: 2px;
-  font-size: 11.5px;
+  font-size: var(--fs-2xs);
   color: var(--line-strong);
 }
 
@@ -2459,19 +2478,19 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .service-num {
   font-family: var(--font-en);
-  font-size: 15px;
+  font-size: var(--fs-base);
   letter-spacing: 0.1em;
   color: var(--gold);
 }
 
 .service-grid h3 {
-  font-size: 19px;
+  font-size: var(--fs-lg);
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .service-grid p {
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: 1.9;
   color: var(--muted);
   transition: color 0.4s;
@@ -2528,7 +2547,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .about-lead > p {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   line-height: 2.1;
   color: var(--muted);
   max-width: 660px;
@@ -2552,14 +2571,14 @@ main, .site-footer, .site-header, .mobile-menu {
 .about-stats strong {
   font-family: var(--font-en);
   font-weight: 500;
-  font-size: clamp(38px, 5vw, 58px);
+  font-size: var(--fs-num);
   line-height: 1.1;
   color: var(--blue);
   font-variant-numeric: tabular-nums;
 }
 
 .about-stats span {
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   color: var(--muted);
 }
@@ -2585,13 +2604,13 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .about-grid h3 {
-  font-size: 19px;
+  font-size: var(--fs-lg);
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .about-grid p {
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   line-height: 1.95;
   color: var(--muted);
 }
@@ -2613,7 +2632,7 @@ main, .site-footer, .site-header, .mobile-menu {
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   padding: 10px 22px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.08em;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
@@ -2657,13 +2676,13 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .news-list time {
   font-family: var(--font-en);
-  font-size: 13px;
+  font-size: var(--fs-sm);
   letter-spacing: 0.08em;
   color: var(--muted);
 }
 
 .news-tag {
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   color: var(--blue);
@@ -2674,7 +2693,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .news-list h3 {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: var(--fs-base);
   font-weight: 500;
   letter-spacing: 0.04em;
 }
@@ -2733,7 +2752,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .contact-info > p {
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   color: var(--muted);
   max-width: 520px;
 }
@@ -2750,7 +2769,7 @@ main, .site-footer, .site-header, .mobile-menu {
   gap: 14px;
   padding: 13px 4px;
   border-bottom: 1px solid var(--line);
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
 }
 
 .contact-list dt {
@@ -2785,7 +2804,7 @@ main, .site-footer, .site-header, .mobile-menu {
   align-items: center;
   gap: 8px;
   margin-top: 4px;
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -2854,14 +2873,14 @@ main, .site-footer, .site-header, .mobile-menu {
   align-items: center;
   gap: 12px;
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--fs-md);
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .footer-note {
   margin-top: 10px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   color: rgba(246, 244, 236, 0.6);
   letter-spacing: 0.08em;
 }
@@ -2874,7 +2893,7 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .footer-nav a {
-  font-size: 13px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.1em;
   color: rgba(246, 244, 236, 0.78);
@@ -2891,7 +2910,7 @@ main, .site-footer, .site-header, .mobile-menu {
   padding: 18px var(--gutter) 0;
   border-top: 1px solid rgba(246, 244, 236, 0.14);
   font-family: var(--font-en);
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.2em;
   color: rgba(246, 244, 236, 0.5);
 }
@@ -3077,7 +3096,7 @@ button {
   }
 
   .feature-card h3 {
-    font-size: 15px;
+    font-size: var(--fs-base);
     line-height: 1.6;
   }
 
@@ -3089,7 +3108,7 @@ button {
 
   .feature-card .like-button {
     padding: 4px 11px;
-    font-size: 11px;
+    font-size: var(--fs-2xs);
   }
 
   /* 統計: 大きな縦積み → 数字＋ラベルの横並び行 */
@@ -3101,7 +3120,7 @@ button {
   }
 
   .about-stats strong {
-    font-size: 30px;
+    font-size: var(--fs-num);
   }
 
   /* 問い合わせ: ボタンを全幅にして押しやすく */

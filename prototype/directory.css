@@ -22,7 +22,7 @@ body > .page-progress:not(:has(i)),
   align-items: center;
   gap: 10px;
   font-family: var(--font-en);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.24em;
   color: var(--blue);
@@ -49,7 +49,7 @@ body > .page-progress:not(:has(i)),
 }
 .dir-hero p.dir-lead {
   margin-top: 16px;
-  font-size: 15px;
+  font-size: var(--fs-base);
   color: var(--muted);
   max-width: 620px;
   line-height: 2;
@@ -65,11 +65,11 @@ body > .page-progress:not(:has(i)),
 .dir-count strong {
   font-family: var(--font-en);
   font-weight: 500;
-  font-size: clamp(40px, 6vw, 60px);
+  font-size: var(--fs-num);
   line-height: 1;
   color: var(--blue);
 }
-.dir-count span { font-size: 15px; line-height: 1.9; color: var(--muted); letter-spacing: 0.04em; }
+.dir-count span { font-size: var(--fs-base); line-height: 1.9; color: var(--muted); letter-spacing: 0.04em; }
 
 /* businesses.html 内の .section-heading（home.css の定義を継承しつつ .eyebrow を許容） */
 .businesses-section { max-width: 1180px; margin: 0 auto; padding: clamp(36px,6vh,64px) var(--gutter) clamp(52px, 9vh, 96px); }
@@ -98,7 +98,7 @@ body > .page-progress:not(:has(i)),
 .filters label {
   display: grid;
   gap: 7px;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -106,7 +106,7 @@ body > .page-progress:not(:has(i)),
 .filters select,
 .filters input {
   font: inherit;
-  font-size: 14px;
+  font-size: var(--fs-base);
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
@@ -138,7 +138,7 @@ body > .page-progress:not(:has(i)),
   margin-bottom: 22px;
 }
 .filter-shortcuts span {
-  font-size: 12px;
+  font-size: var(--fs-xs);
   font-weight: 500;
   color: var(--muted);
   letter-spacing: 0.1em;
@@ -149,7 +149,7 @@ body > .page-progress:not(:has(i)),
   background: none;
   border-radius: 999px;
   padding: 7px 16px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: 500;
   color: var(--ink);
   transition: background 0.25s, color 0.25s, border-color 0.25s;
@@ -172,7 +172,7 @@ body > .page-progress:not(:has(i)),
 }
 .list-status #result-count {
   font-family: var(--font-en);
-  font-size: 14px;
+  font-size: var(--fs-base);
   letter-spacing: 0.06em;
   color: var(--ink);
 }
@@ -181,7 +181,7 @@ body > .page-progress:not(:has(i)),
   background: none;
   border-radius: 999px;
   padding: 7px 16px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
@@ -189,7 +189,7 @@ body > .page-progress:not(:has(i)),
 
 .plan-size-note {
   margin: 14px 0 24px;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   letter-spacing: 0.04em;
 }
@@ -213,15 +213,15 @@ body > .page-progress:not(:has(i)),
   justify-self: start;
   background: var(--gold);
   color: var(--ink);
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.12em;
   padding: 4px 12px;
 }
-.ad-card small { font-family: var(--font-en); font-size: 11px; letter-spacing: 0.2em; color: rgba(246,244,236,.7); }
-.ad-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 900; letter-spacing: 0.03em; }
-.ad-card p { font-size: 13.5px; line-height: 1.9; color: rgba(246,244,236,.82); }
-.ad-card .business-meta { color: rgba(246,244,236,.6); font-size: 12px; }
+.ad-card small { font-family: var(--font-en); font-size: var(--fs-2xs); letter-spacing: 0.2em; color: rgba(246,244,236,.7); }
+.ad-card h3 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 900; letter-spacing: 0.03em; }
+.ad-card p { font-size: var(--fs-sm); line-height: 1.9; color: rgba(246,244,236,.82); }
+.ad-card .business-meta { color: rgba(246,244,236,.6); font-size: var(--fs-xs); }
 .ad-card .card-links a { color: var(--paper); border-color: rgba(246,244,236,.4); }
 .ad-card .card-links a:hover { background: var(--paper); color: var(--ink); }
 
@@ -271,7 +271,7 @@ body > .page-progress:not(:has(i)),
 }
 .plan-badge {
   justify-self: start;
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   padding: 4px 12px;
@@ -283,12 +283,12 @@ body > .page-progress:not(:has(i)),
 .plan-tier-5 .plan-badge { background: color-mix(in srgb, var(--blue) 16%, var(--paper)); color: var(--blue); }
 .business-card h3 {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: var(--fs-lg);
   font-weight: 700;
   letter-spacing: 0.03em;
 }
-.business-meta { font-size: 12px; letter-spacing: 0.08em; color: var(--muted); }
-.business-card-body > p { font-size: 13px; line-height: 1.85; color: #43403a; }
+.business-meta { font-size: var(--fs-xs); letter-spacing: 0.08em; color: var(--muted); }
+.business-card-body > p { font-size: var(--fs-sm); line-height: 1.85; color: #43403a; }
 
 .card-info { display: grid; margin: 4px 0 0; border-top: 1px solid var(--line); }
 .card-info > div {
@@ -297,7 +297,7 @@ body > .page-progress:not(:has(i)),
   gap: 10px;
   padding: 9px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
 }
 .card-info dt { font-weight: 700; color: var(--muted); letter-spacing: 0.06em; }
 .card-info dd { margin: 0; }
@@ -314,7 +314,7 @@ body > .page-progress:not(:has(i)),
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   padding: 6px 13px;
-  font-size: 12px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
@@ -330,7 +330,7 @@ body > .page-progress:not(:has(i)),
   transition: background 0.3s !important;
 }
 .card-detail-link:hover { background: var(--blue) !important; color: #fff !important; }
-.card-note { font-size: 12px; color: var(--muted); }
+.card-note { font-size: var(--fs-xs); color: var(--muted); }
 
 /* 1万円プラン：ロゴと社名だけの最小カード */
 .business-card.minimal-card {
@@ -346,7 +346,7 @@ body > .page-progress:not(:has(i)),
   padding: clamp(14px, 1.6vw, 18px);
 }
 .business-card.minimal-card h3 {
-  font-size: 15px;
+  font-size: var(--fs-base);
 }
 
 /* 1万円プラン（自社サイト無し）の最小紹介ページ */
@@ -362,7 +362,7 @@ body > .page-progress:not(:has(i)),
   margin-bottom: 20px;
 }
 .minimal-detail p {
-  font-size: 14px;
+  font-size: var(--fs-base);
   line-height: 2;
   color: #43403a;
 }
@@ -392,7 +392,7 @@ body > .page-progress:not(:has(i)),
   .business-card.plan-tier-10 > img,
   .business-card.premium > img { aspect-ratio: auto; height: 100%; min-height: 260px; }
   .business-card.plan-tier-10 h3,
-  .business-card.premium h3 { font-size: 22px; }
+  .business-card.premium h3 { font-size: var(--fs-xl); }
   .business-card.plan-tier-10 .business-card-body,
   .business-card.premium .business-card-body { align-content: center; }
 }
@@ -455,7 +455,7 @@ body > .page-progress:not(:has(i)),
 }
 .detail-hero > div > p {
   max-width: 640px;
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   line-height: 1.95;
   text-shadow: 0 1px 16px rgba(10,18,13,.5);
 }
@@ -464,7 +464,7 @@ body > .page-progress:not(:has(i)),
   border: 1px solid rgba(255,255,255,.5);
   border-radius: 999px;
   padding: 8px 16px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   color: #fff;
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
@@ -489,7 +489,7 @@ body > .page-progress:not(:has(i)),
   background: var(--paper-deep);
   border-radius: 999px;
   padding: 6px 14px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: 500;
 }
 .info-list { display: grid; margin: 0; border-top: 1px solid var(--line-strong); }
@@ -499,7 +499,7 @@ body > .page-progress:not(:has(i)),
   gap: 12px;
   padding: 13px 2px;
   border-bottom: 1px solid var(--line);
-  font-size: 14px;
+  font-size: var(--fs-base);
 }
 .info-list dt { font-weight: 700; color: var(--muted); letter-spacing: 0.08em; }
 .info-list dd { margin: 0; }
@@ -515,14 +515,14 @@ body > .page-progress:not(:has(i)),
   position: sticky;
   top: calc(var(--header-h) + 16px);
 }
-.contact-panel h2 { font-size: 16px !important; margin-bottom: 6px !important; }
+.contact-panel h2 { font-size: var(--fs-md) !important; margin-bottom: 6px !important; }
 .contact-panel a {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border: 1px solid var(--line-strong);
   padding: 13px 16px;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
@@ -574,8 +574,8 @@ body > .page-progress:not(:has(i)),
   color: var(--ink);
 }
 .video-frame-placeholder .eyebrow { color: var(--blue); }
-.video-frame-placeholder h2 { font-family: var(--font-display); font-size: 20px; font-weight: 900; }
-.video-frame-placeholder p { font-size: 13px; color: var(--muted); line-height: 1.9; }
+.video-frame-placeholder h2 { font-family: var(--font-display); font-size: var(--fs-xl); font-weight: 900; }
+.video-frame-placeholder p { font-size: var(--fs-sm); color: var(--muted); line-height: 1.9; }
 .case-list { display: grid; gap: 16px; }
 .case-list article {
   background: var(--surface);
@@ -583,8 +583,8 @@ body > .page-progress:not(:has(i)),
   border-top: 3px solid var(--blue);
   padding: 20px;
 }
-.case-list h3 { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.03em; }
-.case-list p { font-size: 13px; line-height: 1.9; color: var(--muted); }
+.case-list h3 { font-family: var(--font-display); font-size: var(--fs-md); font-weight: 700; margin-bottom: 6px; letter-spacing: 0.03em; }
+.case-list p { font-size: var(--fs-sm); line-height: 1.9; color: var(--muted); }
 
 .button.primary {
   display: inline-flex;
@@ -593,7 +593,7 @@ body > .page-progress:not(:has(i)),
   background: var(--ink);
   color: var(--paper);
   padding: 15px 28px;
-  font-size: 14px;
+  font-size: var(--fs-base);
   font-weight: 700;
   letter-spacing: 0.1em;
   transition: background 0.3s;
@@ -631,7 +631,7 @@ body > .page-progress:not(:has(i)),
 .contact-form label {
   display: grid;
   gap: 8px;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -641,7 +641,7 @@ body > .page-progress:not(:has(i)),
   display: block;
   width: 100%;
   padding: 0;
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -650,7 +650,7 @@ body > .page-progress:not(:has(i)),
 .contact-form .req {
   display: inline-block;
   font-style: normal;
-  font-size: 10.5px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #fff;
@@ -663,7 +663,7 @@ body > .page-progress:not(:has(i)),
 .contact-form input,
 .contact-form textarea {
   font: inherit;
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
@@ -710,7 +710,7 @@ body > .page-progress:not(:has(i)),
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 14.5px;
+  font-size: var(--fs-base);
   font-weight: 500;
   color: var(--ink);
   letter-spacing: 0.02em;
@@ -725,7 +725,7 @@ body > .page-progress:not(:has(i)),
 }
 
 .contact-note {
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   color: var(--muted);
   letter-spacing: 0.04em;
 }
@@ -755,7 +755,7 @@ body > .page-progress:not(:has(i)),
   border-radius: 50%;
   background: var(--blue);
   color: #fff;
-  font-size: 20px;
+  font-size: var(--fs-xl);
 }
 
 .form-done h3 {
@@ -766,7 +766,7 @@ body > .page-progress:not(:has(i)),
 }
 
 .form-done > p:not(.fd-mark) {
-  font-size: 14px;
+  font-size: var(--fs-base);
   line-height: 2;
   color: var(--muted);
 }
@@ -778,20 +778,20 @@ body > .page-progress:not(:has(i)),
   border-top: 1px solid var(--line);
   display: grid;
   gap: 6px;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
 
 .contact-alt-tel a {
   font-family: var(--font-en);
-  font-size: clamp(20px, 3vw, 26px);
+  font-size: var(--fs-xl);
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--ink);
 }
 
 .contact-alt-tel a:hover { color: var(--blue); }
-.contact-alt-tel span { margin-left: 8px; font-size: 12.5px; }
+.contact-alt-tel span { margin-left: 8px; font-size: var(--fs-xs); }
 
 /* 一覧ページは行数が増えるため、トップの4列+段差ではなく3列フラットで揃える */
 .article-index-grid { margin-top: 6px; }
@@ -829,7 +829,7 @@ body > .page-progress:not(:has(i)),
 
 .download-card-eyebrow {
   font-family: var(--font-en);
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   letter-spacing: 0.24em;
   color: var(--blue);
 }
@@ -848,7 +848,7 @@ body > .page-progress:not(:has(i)),
 
 .download-card-body > p:last-child {
   margin-top: 8px;
-  font-size: 13.5px;
+  font-size: var(--fs-sm);
   color: var(--muted);
 }
 
@@ -879,7 +879,7 @@ body > .page-progress:not(:has(i)),
   padding: 14px 18px;
   background: var(--paper-deep);
   border-left: 3px solid var(--gold);
-  font-size: 12.5px;
+  font-size: var(--fs-xs);
   line-height: 1.9;
   color: var(--muted);
 }
@@ -911,13 +911,13 @@ body > .page-progress:not(:has(i)),
   place-items: center;
   text-align: center;
   color: var(--muted);
-  font-size: 12px;
+  font-size: var(--fs-xs);
   letter-spacing: 0.06em;
 }
 
 .chairman-gen {
   font-family: var(--font-en);
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.18em;
   color: var(--blue);
@@ -925,14 +925,14 @@ body > .page-progress:not(:has(i)),
 
 .chairman-name {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--fs-md);
   font-weight: 900;
   letter-spacing: 0.03em;
   color: var(--muted);
 }
 
 .chairman-term {
-  font-size: 12px;
+  font-size: var(--fs-xs);
   color: var(--muted);
 }
 
@@ -971,7 +971,7 @@ body > .page-progress:not(:has(i)),
 
 .hub-card-eyebrow {
   font-family: var(--font-en);
-  font-size: 11px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.14em;
   color: var(--blue);
@@ -979,13 +979,13 @@ body > .page-progress:not(:has(i)),
 
 .hub-card h3 {
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: var(--fs-lg);
   font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .hub-card p {
-  font-size: 13px;
+  font-size: var(--fs-sm);
   line-height: 1.85;
   color: #43403a;
 }
