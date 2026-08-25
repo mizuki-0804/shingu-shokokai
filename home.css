@@ -44,7 +44,7 @@
      --fs-num はページの主役になる数字（掲載件数・設立年など）、
      --fs-num-sm はカードの中に入る数字（料金など）。 */
   --fs-num: clamp(32px, 5.4vw, 64px);
-  --fs-num-sm: clamp(28px, 3.4vw, 40px);
+  --fs-num-sm: clamp(28px, 3.4vw, 36px);
 }
 
 * {
