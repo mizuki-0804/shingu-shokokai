@@ -223,7 +223,7 @@ get_header();
             <div><dt>会員数</dt><dd>640</dd></div>
           </dl>
           <div class="contact-actions" data-reveal>
-            <a class="button-ghost" href="http://www.shinguumachi.or.jp/about" target="_blank" rel="noreferrer"><span>アクセスを見る</span><i aria-hidden="true">↗</i></a>
+            <a class="button-ghost" href="<?php echo esc_url( home_url( '/gaiyo/' ) ); ?>"><span>アクセスを見る</span></a>
             <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><span>専用ページで相談する</span><i aria-hidden="true">→</i></a>
           </div>
         </div>
