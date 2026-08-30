@@ -716,7 +716,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .hero-panels a {
   position: relative;
   display: grid;
-  grid-template-columns: 74px 1fr auto;
+  grid-template-columns: 74px 1fr;
   align-items: center;
   gap: 10px;
   padding: 15px 18px;
@@ -942,6 +942,19 @@ main, .site-footer, .site-header, .mobile-menu {
   letter-spacing: 0.08em;
   color: var(--muted);
   transition: color 0.3s;
+}
+
+/* 矢印などの記号を置かない方針のため、文字だけのリンクは
+   下線で「押せる」ことを示す（記号ゼロでも導線が分かるように） */
+.dock-all,
+.newsline-more,
+.inverted-dock-all {
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 4px;
+}
+
+.inverted-dock-all {
+  border-bottom-color: var(--gold);
 }
 
 .dock-all i {
@@ -1576,7 +1589,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .role-row {
   position: relative;
   display: grid;
-  grid-template-columns: auto auto 1fr auto;
+  grid-template-columns: auto auto 1fr;
   align-items: center;
   gap: clamp(16px, 3.4vw, 44px);
   padding: clamp(22px, 4vh, 38px) clamp(6px, 2vw, 24px);
@@ -2673,7 +2686,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .news-list > a {
   display: grid;
-  grid-template-columns: auto auto 1fr auto;
+  grid-template-columns: auto auto 1fr;
   align-items: center;
   gap: clamp(14px, 2.6vw, 28px);
   padding: clamp(18px, 3vh, 26px) 6px;
@@ -2733,10 +2746,7 @@ main, .site-footer, .site-header, .mobile-menu {
   .news-list h3 {
     grid-column: 1 / -1;
   }
-  .news-list i {
-    display: none;
   }
-}
 
 /* ============================================================
    CONTACT / APPLY
