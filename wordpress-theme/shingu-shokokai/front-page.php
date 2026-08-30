@@ -38,9 +38,9 @@ get_header();
             福岡県糟屋郡新宮町商工会が、まちの商売と暮らしを応援します。
           </p>
           <div class="hero-panels" data-hero-seq="5" aria-label="おすすめのメニュー">
-            <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><span>ABOUT</span><strong>商工会について知る</strong><i aria-hidden="true">→</i></a>
-            <a href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>"><span>MEMBERS</span><strong>新宮町の企業を探す</strong><i aria-hidden="true">→</i></a>
-            <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><span>SUPPORT</span><strong>商工会に相談する</strong><i aria-hidden="true">→</i></a>
+            <a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><span>ABOUT</span><strong>商工会について知る</strong></a>
+            <a href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>"><span>MEMBERS</span><strong>新宮町の企業を探す</strong></a>
+            <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><span>SUPPORT</span><strong>商工会に相談する</strong></a>
           </div>
         </div>
 
@@ -58,7 +58,7 @@ get_header();
         <div class="dock-form">
           <div class="dock-head">
             <p class="dock-label" id="dock-label"><em>FIND BY CATEGORY</em>業種から新宮町の企業をさがす</p>
-            <a class="dock-all" href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>">すべての新宮町の企業を見る<i aria-hidden="true">→</i></a>
+            <a class="dock-all" href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>">すべての新宮町の企業を見る</a>
           </div>
           <label class="dock-select" for="dock-category">
             <span class="visually-hidden">業種を選ぶ</span>
@@ -94,7 +94,7 @@ get_header();
             <?php endwhile; wp_reset_postdata(); ?>
           </ul>
         </div>
-        <a class="newsline-more" href="<?php echo esc_url( home_url( '/news/' ) ); ?>">すべて見る<i aria-hidden="true">→</i></a>
+        <a class="newsline-more" href="<?php echo esc_url( home_url( '/news/' ) ); ?>">すべて見る</a>
       </section>
 
       <!-- ============ MARQUEE ============ -->
@@ -115,7 +115,7 @@ get_header();
             <span>このサイトに掲載中の企業</span>
           </p>
           <p data-reveal>飲食、住まい、美容、健康、サービスなど、必要な内容から町内の新宮町の企業を探せます。業種で絞り込み、気になるお店や会社の基本情報を確認できます。</p>
-          <a class="button-primary" href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>" data-reveal><span>事業者一覧を見る</span><i aria-hidden="true">→</i></a>
+          <a class="button-primary" href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>" data-reveal><span>事業者一覧を見る</span></a>
         </div>
         <div id="business-preview-list" class="directory-preview"></div>
       </section>
@@ -198,12 +198,11 @@ get_header();
             <time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time>
             <?php if ( $tag ) : ?><span class="news-tag"><?php echo esc_html( $tag ); ?></span><?php endif; ?>
             <h3><?php the_title(); ?></h3>
-            <i aria-hidden="true">→</i>
           </a>
           <?php endwhile; wp_reset_postdata(); ?>
         </div>
         <div class="news-more" data-reveal>
-          <a class="button-ghost" href="<?php echo esc_url( home_url( '/news/' ) ); ?>"><span>すべてのお知らせを見る</span><i aria-hidden="true">→</i></a>
+          <a class="button-ghost" href="<?php echo esc_url( home_url( '/news/' ) ); ?>"><span>すべてのお知らせを見る</span></a>
         </div>
       </section>
 
@@ -224,7 +223,7 @@ get_header();
           </dl>
           <div class="contact-actions" data-reveal>
             <a class="button-ghost" href="<?php echo esc_url( home_url( '/gaiyo/' ) ); ?>"><span>アクセスを見る</span></a>
-            <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><span>専用ページで相談する</span><i aria-hidden="true">→</i></a>
+            <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><span>専用ページで相談する</span></a>
           </div>
         </div>
 

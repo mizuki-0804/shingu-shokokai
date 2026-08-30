@@ -33,7 +33,7 @@ get_header();
           <?php the_content(); ?>
         </div>
         <p class="news-more">
-          <a class="button-ghost" href="<?php echo esc_url( home_url( '/news/' ) ); ?>"><span>お知らせ一覧へ戻る</span><i aria-hidden="true">→</i></a>
+          <a class="button-ghost" href="<?php echo esc_url( home_url( '/news/' ) ); ?>"><span>お知らせ一覧へ戻る</span></a>
         </p>
       </section>
       <?php endwhile; ?>

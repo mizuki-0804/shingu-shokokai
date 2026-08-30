@@ -107,7 +107,7 @@ get_header();
         </div>
 
         <p class="placeholder-note">気になる支援メニューがありましたら、お気軽にご相談ください。内容によってご案内できる制度が異なりますので、まずは窓口までお問い合わせください。</p>
-        <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/?type=経営相談' ) ); ?>"><span>支援メニューについて相談する</span><i aria-hidden="true">→</i></a>
+        <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/?type=経営相談' ) ); ?>"><span>支援メニューについて相談する</span></a>
       </section>
     </main>
 

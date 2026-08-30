@@ -118,7 +118,7 @@ while ( have_posts() ) :
     </main>
 
     <div class="detail-bottom">
-      <a class="button primary" href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>"><span>会員企業一覧へ戻る</span><span aria-hidden="true">→</span></a>
+      <a class="button primary" href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>"><span>会員企業一覧へ戻る</span></a>
     </div>
 
 <?php endwhile; ?>

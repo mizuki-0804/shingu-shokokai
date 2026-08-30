@@ -52,8 +52,8 @@ $theme_uri = get_stylesheet_directory_uri();
         <p>入会についてご不明な点があれば、お気軽に商工会までご相談ください。</p>
 
         <div class="contact-actions">
-          <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/?type=入会' ) ); ?>"><span>入会について相談する</span><i aria-hidden="true">→</i></a>
-          <a class="button-ghost" href="tel:0929634567"><span>092-963-4567 に電話する</span><i aria-hidden="true">→</i></a>
+          <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/?type=入会' ) ); ?>"><span>入会について相談する</span></a>
+          <a class="button-ghost" href="tel:0929634567"><span>092-963-4567 に電話する</span></a>
         </div>
       </div>
       </section>

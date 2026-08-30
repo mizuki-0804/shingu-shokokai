@@ -146,7 +146,7 @@ get_header();
 
         <p class="placeholder-note">※ これはデモ画面です。会館使用申込書のPDFは準備中です。実際の掲載時には、ダウンロードできるようにします。</p>
 
-        <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/?type=その他' ) ); ?>"><span>会館使用について相談する</span><i aria-hidden="true">→</i></a>
+        <a class="button-primary" href="<?php echo esc_url( home_url( '/contact/?type=その他' ) ); ?>"><span>会館使用について相談する</span></a>
       </section>
     </main>
 

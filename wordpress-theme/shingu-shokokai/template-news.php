@@ -49,7 +49,6 @@ $news_query = new WP_Query(
             <time datetime="<?php echo esc_attr( get_the_date( 'Y-m-d' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time>
             <?php if ( $tag ) : ?><span class="news-tag"><?php echo esc_html( $tag ); ?></span><?php endif; ?>
             <h3><?php the_title(); ?></h3>
-            <i aria-hidden="true">→</i>
           </a>
             <?php endwhile; wp_reset_postdata(); ?>
           <?php else : ?>
