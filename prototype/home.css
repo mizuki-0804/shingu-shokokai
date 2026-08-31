@@ -304,18 +304,17 @@ main, .site-footer, .site-header, .mobile-menu {
   margin-right: auto;
 }
 
+/* 商工会章（歯車の中にS）。1枚のPNGを「型抜き」として使い、
+   色はCSS側で決める。こうしておくと、明るい背景・写真の上・濃いフッターで
+   同じ画像を色だけ変えて使い回せる（白版・黒版を別々に持たなくてよい）。 */
 .brand-mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: var(--paper);
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 700;
   flex: none;
+  background-color: var(--blue);
+  -webkit-mask: url("./img/logo-mark.png") center / contain no-repeat;
+  mask: url("./img/logo-mark.png") center / contain no-repeat;
 }
 
 .brand-text {
@@ -345,10 +344,16 @@ main, .site-footer, .site-header, .mobile-menu {
   color: rgba(255, 255, 255, 0.75);
 }
 
+/* 写真に重なっているときは白 */
 .site-header.on-hero:not(.is-scrolled) .brand-mark {
-  background: rgba(255, 255, 255, 0.16);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  background-color: #fff;
+}
+
+/* 濃いフッターの上では明るい色 */
+.footer-brand .brand-mark {
+  width: 32px;
+  height: 32px;
+  background-color: var(--paper);
 }
 
 .site-nav {
