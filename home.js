@@ -9,7 +9,7 @@
   const qsa = (s, root = document) => [...root.querySelectorAll(s)];
 
   const data = window.SHINGU_DATA || { businesses: [], features: [], interviews: [] };
-  const businesses = [...data.businesses].sort((a, b) => a.planRank - b.planRank);
+  const businesses = orderByPlan(data.businesses);
 
   /* ディレクトリの「掲載中の企業」数は実際の掲載件数に連動させる */
   const directoryCountEl = qs("#directory-count-num");

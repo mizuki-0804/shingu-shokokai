@@ -1,4 +1,4 @@
-const businesses = [...window.SHINGU_DATA.businesses].sort((a, b) => a.planRank - b.planRank);
+const businesses = orderByPlan(window.SHINGU_DATA.businesses);
 const features = window.SHINGU_DATA.features;
 const latestArticles = window.SHINGU_DATA.latestArticles;
 const interviews = window.SHINGU_DATA.interviews;
