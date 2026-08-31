@@ -88,16 +88,13 @@
 }
 
 .article-meta .avatar {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  font-weight: 700;
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  background-color: var(--blue);
+  -webkit-mask: url("./img/logo-mark.png") center / contain no-repeat;
+  mask: url("./img/logo-mark.png") center / contain no-repeat;
 }
 
 .article-meta time {
