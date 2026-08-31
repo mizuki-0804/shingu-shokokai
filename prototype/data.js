@@ -107,7 +107,7 @@ window.SHINGU_DATA = {
       category: "建設",
       area: "三代",
       plan: "10万円プラン",
-      planRank: 1.5,
+      planRank: 1,
       detailPage: true,
       catchcopy: "新築・リフォーム・修繕まで相談しやすい町の工務店",
       description:
@@ -460,6 +460,39 @@ function externalLinks(business, compact = false) {
     compact || !isCallablePhone(business.phone) ? "" : `<a href="tel:${business.phone}">電話</a>`
   ];
   return links.filter(Boolean).join("");
+}
+
+// ============================================================
+// 掲載順
+// 掲載プランの優先順位（10万円 → 5万円 → 1万円）は必ず守る。
+// そのうえで、同じ料金を払っている企業どうしの並びは、
+// ページを開くたびに入れ替える。特定の企業がいつも上に来ないようにするため。
+//
+// 並びを決めるのはページを開いたときの1回だけ。
+// 業種やエリアで絞り込んでも並び替えはしない（操作のたびに動くと探しづらい）。
+// ============================================================
+function shuffleList(list) {
+  const a = [...list];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function orderByPlan(list) {
+  // まとめる単位は「料金（プラン名）」。優先度の数値でまとめると、
+  // 同じ料金なのに数値が 1 と 1.5 のように違っていた場合に別組になり、
+  // 順番が固定されてしまう（実際にそうなっていた）。
+  const groups = new Map();
+  for (const business of list) {
+    if (!groups.has(business.plan)) groups.set(business.plan, []);
+    groups.get(business.plan).push(business);
+  }
+  const rankOf = (plan) => Math.min(...groups.get(plan).map((b) => b.planRank));
+  return [...groups.keys()]
+    .sort((a, b) => rankOf(a) - rankOf(b))
+    .flatMap((plan) => shuffleList(groups.get(plan)));
 }
 
 function planTierClass(planRank) {
