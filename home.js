@@ -9,7 +9,10 @@
   const qsa = (s, root = document) => [...root.querySelectorAll(s)];
 
   const data = window.SHINGU_DATA || { businesses: [], features: [], interviews: [] };
-  const businesses = orderByPlan(data.businesses);
+  // orderByPlan は data.js 側にある。data.js が読めていない場合はここも存在しないので、
+  // 直に呼ぶと例外で以降が全部止まり、見出しやメニューが opacity:0 のまま残ってしまう
+  // （上の行の保険が意味を失う）。企業データが無いときは空のまま先へ進める。
+  const businesses = typeof orderByPlan === "function" ? orderByPlan(data.businesses) : [];
 
   /* ディレクトリの「掲載中の企業」数は実際の掲載件数に連動させる */
   const directoryCountEl = qs("#directory-count-num");
