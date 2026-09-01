@@ -517,7 +517,12 @@ function renderDetailPage() {
   if (!detail) return;
 
   const params = new URLSearchParams(window.location.search);
-  const id = params.get("id") || businesses.find((business) => hasDetailPage(business))?.id;
+  // 掲載順は開くたびに入れ替わるため、ここで businesses の先頭を使うと
+  // id 無しで開いたとき毎回違う会社が出てしまう。プラン順の先頭に固定する。
+  const fallback = [...businesses]
+    .filter((business) => hasDetailPage(business))
+    .sort((a, b) => a.planRank - b.planRank || a.name.localeCompare(b.name, "ja"))[0];
+  const id = params.get("id") || fallback?.id;
   const business = businesses.find((item) => item.id === id);
 
   if (!business) {
