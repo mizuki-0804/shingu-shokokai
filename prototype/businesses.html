@@ -12,9 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./home.css?v=20260901-3" />
-    <link rel="stylesheet" href="./article.css?v=20260901-3" />
-    <link rel="stylesheet" href="./directory.css?v=20260901-3" />
+    <link rel="stylesheet" href="./home.css?v=20260901-4" />
+    <link rel="stylesheet" href="./article.css?v=20260901-4" />
+    <link rel="stylesheet" href="./directory.css?v=20260901-4" />
   </head>
   <body class="home subpage">
     <div class="page-progress" aria-hidden="true"><i></i></div>
@@ -81,14 +81,10 @@
             </select>
           </label>
         </div>
-        <div class="filter-shortcuts" role="tablist" aria-label="業種で絞り込み">
+        <!-- ボタンは data.js の業種から自動で作る（app.js の buildCategoryShortcuts）。
+             ここに直接書くと、企業を追加したとき業種がボタンに出ず、探せなくなる。 -->
+        <div class="filter-shortcuts" id="category-shortcuts" role="tablist" aria-label="業種で絞り込み">
           <span>業種で絞る</span>
-          <button type="button" data-filter-category="" role="tab">すべて</button>
-          <button type="button" data-filter-category="飲食" role="tab">飲食</button>
-          <button type="button" data-filter-category="建設" role="tab">住まい・建設</button>
-          <button type="button" data-filter-category="美容" role="tab">美容</button>
-          <button type="button" data-filter-category="健康" role="tab">健康</button>
-          <button type="button" data-filter-category="サービス" role="tab">サービス</button>
         </div>
 
         <div id="directory-ad-slot" class="directory-ad-slot" aria-label="おすすめの事業者"></div>
@@ -149,7 +145,7 @@
         });
       })();
     </script>
-    <script src="./data.js?v=20260901-3"></script>
-    <script src="./app.js?v=20260901-3"></script>
+    <script src="./data.js?v=20260901-4"></script>
+    <script src="./app.js?v=20260901-4"></script>
   </body>
 </html>

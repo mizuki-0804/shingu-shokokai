@@ -1,9 +1,11 @@
-const businesses = orderByPlan(window.SHINGU_DATA.businesses);
-const features = window.SHINGU_DATA.features;
-const latestArticles = window.SHINGU_DATA.latestArticles;
-const interviews = window.SHINGU_DATA.interviews;
-const series = window.SHINGU_DATA.series;
-const adSlots = window.SHINGU_DATA.adSlots;
+// data.js が読めていない場合でも、この画面の他の部分は動かす
+const businessSource = (window.SHINGU_DATA && window.SHINGU_DATA.businesses) || [];
+const businesses = typeof orderByPlan === "function" ? orderByPlan(businessSource) : businessSource;
+const features = (window.SHINGU_DATA && window.SHINGU_DATA.features) || [];
+const latestArticles = (window.SHINGU_DATA && window.SHINGU_DATA.latestArticles) || [];
+const interviews = (window.SHINGU_DATA && window.SHINGU_DATA.interviews) || [];
+const series = (window.SHINGU_DATA && window.SHINGU_DATA.series) || [];
+const adSlots = (window.SHINGU_DATA && window.SHINGU_DATA.adSlots) || [];
 const likeIconSvg = `
   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
     <path d="M7 10v11H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3Zm2 11V9.4l4.2-6.1c.3-.5.9-.7 1.5-.5 1.1.3 1.7 1.4 1.5 2.5L15.6 9H20a2 2 0 0 1 2 2.3l-1.1 7A3.2 3.2 0 0 1 17.7 21H9Z" />
@@ -295,7 +297,44 @@ function renderBusinessList() {
   prepareMotionItems(list);
 }
 
+// 画面に見せる業種名。データ上の値と、お客さんに見せたい言い方が違うものだけ書く。
+// ここに無い業種は、データの値をそのまま出す。
+const CATEGORY_LABELS = {
+  建設: "住まい・建設"
+};
+
+// 業種ボタンをデータから作る。
+// 直接HTMLに書いていたときは5業種しか無く、データにある13業種のうち
+// 8業種（33社中13社）がボタンから探せない状態だった。
+function buildCategoryShortcuts() {
+  const box = qs("#category-shortcuts");
+  if (!box) return;
+
+  const counts = new Map();
+  businesses.forEach((business) => {
+    counts.set(business.category, (counts.get(business.category) || 0) + 1);
+  });
+
+  // 掲載社数が多い業種から並べる（同数なら五十音順）
+  const ordered = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ja"));
+
+  const makeButton = (value, label) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.setAttribute("role", "tab");
+    button.dataset.filterCategory = value;
+    button.textContent = label;
+    return button;
+  };
+
+  box.append(makeButton("", "すべて"));
+  ordered.forEach(([category]) => {
+    box.append(makeButton(category, CATEGORY_LABELS[category] || category));
+  });
+}
+
 function setupFilters() {
+  buildCategoryShortcuts();
   const categoryFilter = qs("#category-filter");
   const areaFilter = qs("#area-filter");
   const keywordFilter = qs("#keyword-filter");
@@ -306,6 +345,7 @@ function setupFilters() {
   fillSelect(areaFilter, uniqueValues("area"));
 
   const syncShortcutState = () => {
+    // 「すべて」のボタンは、絞り込みが掛かっていないときだけ光らせる
     shortcutButtons.forEach((button) => {
       const isActive = button.dataset.filterCategory === state.category;
       button.classList.toggle("is-active", isActive);
