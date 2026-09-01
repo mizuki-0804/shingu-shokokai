@@ -18,8 +18,8 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Space+Grotesk:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./home.css?v=20260901-4" />
-    <link rel="stylesheet" href="./directory.css?v=20260901-4" />
+    <link rel="stylesheet" href="./home.css?v=20260901-5" />
+    <link rel="stylesheet" href="./directory.css?v=20260901-5" />
   </head>
   <body class="home">
     <!-- Opening -->
@@ -127,13 +127,10 @@
           </div>
           <label class="dock-select" for="dock-category">
             <span class="visually-hidden">業種を選ぶ</span>
+            <!-- 選択肢は data.js の業種から home.js が作る。
+                 ここに直接書くと、企業を追加しても選択肢に出ず探せなくなる。 -->
             <select id="dock-category">
               <option value="">業種を選ぶ</option>
-              <option value="飲食">飲食</option>
-              <option value="建設">住まい・建設</option>
-              <option value="美容">美容</option>
-              <option value="健康">健康</option>
-              <option value="サービス">サービス</option>
             </select>
           </label>
         </div>
@@ -335,7 +332,7 @@
       <p class="footer-copy">© 新宮町商工会</p>
     </footer>
 
-    <script src="./data.js?v=20260901-4"></script>
-    <script src="./home.js?v=20260901-4"></script>
+    <script src="./data.js?v=20260901-5"></script>
+    <script src="./home.js?v=20260901-5"></script>
   </body>
 </html>

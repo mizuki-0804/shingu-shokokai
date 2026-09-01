@@ -207,6 +207,21 @@
 
   /* ============ 業種ドック（プルダウンで businesses.html?category=X へ遷移） ============ */
   const dockCategory = qs("#dock-category");
+  // 選択肢はデータから作る。直書きだと企業を追加しても選択肢に出ない。
+  // 並びは掲載社数の多い順。表示名だけ変えたい業種は CATEGORY_LABELS に書く。
+  const CATEGORY_LABELS = { 建設: "住まい・建設" };
+  if (dockCategory) {
+    const counts = new Map();
+    businesses.forEach((b) => counts.set(b.category, (counts.get(b.category) || 0) + 1));
+    [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ja"))
+      .forEach(([category]) => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = CATEGORY_LABELS[category] || category;
+        dockCategory.append(option);
+      });
+  }
   dockCategory?.addEventListener("change", () => {
     const value = dockCategory.value;
     window.location.href = value ? `./businesses.html?category=${encodeURIComponent(value)}` : "./businesses.html";
