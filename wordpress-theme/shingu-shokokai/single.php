@@ -35,7 +35,7 @@ while ( have_posts() ) :
           </p>
           <h1 class="article-title"><?php the_title(); ?></h1>
           <div class="article-meta">
-            <span class="author"><span class="avatar">新</span>新宮町商工会 編集部</span>
+            <span class="author"><span class="avatar" aria-hidden="true"></span>新宮町商工会 編集部</span>
             <time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'Y.m.d' ) ); ?></time>
             <span>読了 約<?php echo (int) $read_minutes; ?>分</span>
           </div>

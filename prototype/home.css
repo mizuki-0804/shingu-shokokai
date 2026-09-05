@@ -28,8 +28,7 @@
 
   /* 入力欄・選択欄の共通寸法。フォーム部品の高さはここだけで決める。
      個々の場所で padding や line-height を上書きしないこと。
-     （以前はトップの業種選択59px / 相談フォーム57px / 絞り込み45px と
-       バラバラだった。原因はどれも body の line-height 1.9 の継承） */
+     body の line-height を継承すると高さが揃わなくなるため、必ずここで指定する。 */
   --field-pad-y: 11px;
   --field-pad-x: 14px;
   --field-line: 1.6;

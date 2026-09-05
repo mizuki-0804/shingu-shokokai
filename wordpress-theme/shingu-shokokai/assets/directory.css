@@ -86,18 +86,19 @@ body > .page-progress:not(:has(i)),
    ============================================================ */
 .filters {
   display: grid;
-  gap: 14px;
+  /* スマホでも業種とエリアを横に並べる。縦積みだと絞り込みだけで
+     221px（画面の1/4以上）を使ってしまい、肝心の企業が見えなくなる。 */
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 12px;
   margin: 6px 0 16px;
-  padding: clamp(18px, 2.6vw, 26px);
+  padding: clamp(14px, 2.6vw, 26px);
   background: var(--surface);
   border: 1px solid var(--line-strong);
 }
-@media (min-width: 640px) {
-  .filters { grid-template-columns: 1fr 1fr; align-items: end; }
-}
 .filters label {
   display: grid;
-  gap: 7px;
+  gap: 6px;
   font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -110,7 +111,8 @@ body > .page-progress:not(:has(i)),
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
-  padding: 12px 14px;
+  padding: var(--field-pad-y) var(--field-pad-x);
+  line-height: var(--field-line);
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
@@ -121,7 +123,7 @@ body > .page-progress:not(:has(i)),
   background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
-  padding-right: 34px;
+  padding-right: 30px;
 }
 .filters select:focus,
 .filters input:focus {
@@ -332,21 +334,70 @@ body > .page-progress:not(:has(i)),
 .card-detail-link:hover { background: var(--blue) !important; color: #fff !important; }
 .card-note { font-size: var(--fs-xs); color: var(--muted); }
 
-/* 1万円プラン：ロゴと社名だけの最小カード */
-.business-card.minimal-card {
-  text-align: center;
-  cursor: pointer;
+/* 1万円プラン：会社のロゴだけを小さく並べる。ロゴが無ければ社名を出す。
+   有料プランのカードと同じ大きさにすると場所を取りすぎるので、
+   1枚104px前後の小さなタイルにして、スマホで3列・PCで10列前後並ぶようにする。 */
+.logo-wall-block {
+  margin-top: clamp(28px, 4vw, 44px);
+  padding-bottom: clamp(48px, 8vh, 90px);
 }
-.business-card.minimal-card > img {
+
+.logo-wall-label {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+
+.logo-wall-label small {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.logo-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 12px;
+}
+
+.logo-tile {
+  display: grid;
+  place-items: center;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s;
 }
-.business-card.minimal-card .business-card-body {
-  justify-items: center;
-  padding: clamp(14px, 1.6vw, 18px);
+
+.logo-tile:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
 }
-.business-card.minimal-card h3 {
-  font-size: var(--fs-base);
+
+.logo-tile-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logo-tile-name {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
 }
 
 /* 1万円プラン（自社サイト無し）の最小紹介ページ */
@@ -519,16 +570,13 @@ body > .page-progress:not(:has(i)),
 .contact-panel a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   border: 1px solid var(--line-strong);
   padding: 13px 16px;
   font-size: var(--fs-sm);
   font-weight: 500;
   transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
-.contact-panel a::after { content: "→"; color: var(--blue); }
 .contact-panel a:first-of-type { background: var(--blue); color: #fff; border-color: var(--blue); }
-.contact-panel a:first-of-type::after { color: #fff; }
 .contact-panel a:hover { border-color: var(--blue); color: var(--blue); }
 .contact-panel a:first-of-type:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
 
@@ -667,7 +715,8 @@ body > .page-progress:not(:has(i)),
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
-  padding: 13px 14px;
+  padding: var(--field-pad-y) var(--field-pad-x);
+  line-height: var(--field-line);
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
@@ -675,9 +724,9 @@ body > .page-progress:not(:has(i)),
 }
 
 .contact-form textarea {
-  min-height: 170px;
+  min-height: 150px;
   resize: vertical;
-  line-height: 1.9;
+  line-height: var(--field-line);
 }
 
 .contact-form input:focus,

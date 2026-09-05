@@ -88,16 +88,13 @@
 }
 
 .article-meta .avatar {
-  display: grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  font-weight: 700;
+  display: block;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  background-color: var(--blue);
+  -webkit-mask: url("./img/logo-mark.png") center / contain no-repeat;
+  mask: url("./img/logo-mark.png") center / contain no-repeat;
 }
 
 .article-meta time {
@@ -304,18 +301,19 @@ main > .article-body:last-child {
 }
 .inline-card h4 { font-size: var(--fs-md); font-weight: 700; letter-spacing: 0.03em; }
 .inline-card p { font-size: var(--fs-xs); color: var(--muted); line-height: 1.8; }
-.inline-card .ic-arrow {
-  font-size: var(--fs-xl);
+.inline-card .ic-link {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
   color: var(--blue);
-  transition: transform 0.35s var(--ease-out);
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 3px;
 }
-.inline-card:hover .ic-arrow { transform: translateX(6px); }
 
 @media (max-width: 600px) {
   .inline-card { grid-template-columns: 72px 1fr; }
   .inline-card img { width: 72px; height: 72px; }
-  .inline-card .ic-arrow { display: none; }
-}
+  }
 
 /* ---- 記事フッター（タグ・いいね・戻る） ---- */
 .article-foot {

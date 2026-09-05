@@ -63,11 +63,6 @@ sort( $all_areas );
 // 「掲載中の企業」の数は、実際に登録されている件数に連動させる
 $listed_total = count( $all_business_ids );
 
-// 10万円・5万円プラン（plan_rank 3未満）のみ、記事のような詳しい紹介ページに飛べる
-function shingu_has_detail_page( $plan_rank ) {
-	return (float) $plan_rank < 3;
-}
-
 function shingu_plan_tier_class( $plan_rank ) {
 	$plan_rank = (float) $plan_rank;
 	if ( $plan_rank < 2 ) {
@@ -94,20 +89,12 @@ function shingu_plan_tier_class( $plan_rank ) {
 
       <section class="dir-hero">
         <p class="eyebrow">Business Directory</p>
-        <h1>町内のお店・事業者を探す</h1>
-        <p class="dir-lead">暮らしや仕事で必要な地元の情報を、業種やエリアからすぐに探せます。企業名や所在地、連絡先、ホームページ、SNSまでまとめて確認できます。</p>
+        <h1>新宮町の企業一覧</h1>
+        <p class="dir-lead">業種やエリアから、町内のお店・会社を探せます。連絡先やホームページもまとめて確認できます。</p>
         <p class="dir-count"><strong><?php echo (int) $listed_total; ?></strong><span>このサイトに掲載中の企業</span></p>
       </section>
 
-      <section class="section businesses-section" aria-labelledby="business-list-title">
-        <div class="section-heading split-heading">
-          <div>
-            <p class="eyebrow">Search</p>
-            <h2 id="business-list-title">新宮町の企業一覧</h2>
-          </div>
-          <p>業種・エリアから絞り込めます。</p>
-        </div>
-
+      <section class="section businesses-section" aria-label="新宮町の企業一覧">
         <form class="filters" aria-label="絞り込み条件" method="get">
           <label>
             業種
@@ -142,68 +129,87 @@ function shingu_plan_tier_class( $plan_rank ) {
             <a id="reset-filters" href="<?php echo esc_url( home_url( '/businesses/' ) ); ?>">条件をクリア</a>
           <?php endif; ?>
         </div>
-        <p class="plan-size-note">掲載カードの大きさ・表示順は掲載プラン（10万円・5万円・1万円）によって変わります。1万円プランはロゴと社名のみの掲載です。</p>
+        <p class="plan-size-note">掲載カードの大きさ・表示順は掲載プラン（10万円・5万円・1万円）によって変わります。1万円プランはロゴ（無い場合は社名）のみの掲載です。</p>
+
+        <?php
+		// 掲載順は「プランの優先順位は固定、同じ料金の中だけ毎回入れ替え」。
+		// 有料プラン（10万円・5万円）はカード、1万円プランはロゴだけの一覧に分けて出す。
+		$ordered = shingu_shokokai_order_by_plan( $business_query->posts );
+		$carded  = array();
+		$logos   = array();
+		foreach ( $ordered as $business_post ) {
+			if ( shingu_shokokai_has_detail_page( $business_post->ID ) ) {
+				$carded[] = $business_post;
+			} else {
+				$logos[] = $business_post;
+			}
+		}
+		?>
 
         <div id="business-list" class="business-list directory-list">
-          <?php if ( $business_query->have_posts() ) : ?>
-            <?php
-			while ( $business_query->have_posts() ) :
-				$business_query->the_post();
-				$post_id     = get_the_ID();
-				$plan_label  = get_post_meta( $post_id, 'plan_label', true );
-				$plan_rank   = get_post_meta( $post_id, 'plan_rank', true );
-				$area        = get_post_meta( $post_id, 'area', true );
-				$address     = get_post_meta( $post_id, 'address', true );
-				$phone       = get_post_meta( $post_id, 'phone', true );
-				$website     = get_post_meta( $post_id, 'website', true );
-				$instagram   = get_post_meta( $post_id, 'instagram', true );
-				$terms       = get_the_terms( $post_id, 'gyoshu' );
-				$cat_name    = ( $terms && ! is_wp_error( $terms ) && ! empty( $terms ) ) ? $terms[0]->name : '';
-				$tier_class  = shingu_plan_tier_class( $plan_rank );
-				$map_url     = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $address );
-				?>
-            <?php if ( ! shingu_has_detail_page( $plan_rank ) ) : ?>
-              <?php
-				// 1万円プラン：ロゴと社名だけの最小カード。
-				// 自社サイトがあればそのままサイトへ、無ければ最小限の紹介ページへ飛ぶ。
-				$minimal_href     = $website ? $website : get_permalink();
-				$minimal_external = (bool) $website;
-				?>
-            <a class="business-card minimal-card" href="<?php echo esc_url( $minimal_href ); ?>"<?php echo $minimal_external ? ' target="_blank" rel="noreferrer"' : ''; ?>>
-              <?php if ( has_post_thumbnail() ) : ?>
-                <?php the_post_thumbnail( 'medium', array( 'alt' => get_the_title() . 'のロゴ' ) ); ?>
-              <?php endif; ?>
-              <div class="business-card-body">
-                <h3><?php the_title(); ?></h3>
-              </div>
-            </a>
-            <?php else : ?>
-            <article class="business-card <?php echo esc_attr( $tier_class ); ?> <?php echo ( (float) $plan_rank ) < 2 ? 'premium' : ''; ?>">
-              <?php if ( has_post_thumbnail() ) : ?>
-                <?php the_post_thumbnail( 'medium_large', array( 'alt' => get_the_title() . 'のイメージ写真' ) ); ?>
-              <?php endif; ?>
-              <div class="business-card-body">
-                <span class="plan-badge"><?php echo esc_html( $plan_label ); ?></span>
-                <h3><?php the_title(); ?></h3>
-                <p class="business-meta"><?php echo esc_html( $cat_name . ' / ' . $area ); ?></p>
-                <p><?php echo esc_html( get_the_excerpt() ); ?></p>
-                <dl class="card-info">
-                  <div><dt>所在地</dt><dd><?php echo esc_html( $address ); ?></dd></div>
-                  <div><dt>電話</dt><dd><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></dd></div>
-                </dl>
-                <div class="card-links">
-                  <?php if ( $website ) : ?><a href="<?php echo esc_url( $website ); ?>" target="_blank" rel="noreferrer">公式サイト</a><?php endif; ?>
-                  <a href="<?php echo esc_url( $map_url ); ?>" target="_blank" rel="noreferrer">Googleマップ</a>
-                  <?php if ( $instagram ) : ?><a href="<?php echo esc_url( $instagram ); ?>" target="_blank" rel="noreferrer">Instagram</a><?php endif; ?>
-                  <a class="card-detail-link" href="<?php the_permalink(); ?>">詳しく見る</a>
-                </div>
-              </div>
-            </article>
-            <?php endif; ?>
-            <?php endwhile; wp_reset_postdata(); ?>
-          <?php else : ?>
+          <?php if ( empty( $ordered ) ) : ?>
             <p class="empty">条件に合う事業者が見つかりませんでした。</p>
           <?php endif; ?>
+          <?php
+			foreach ( $carded as $business_post ) :
+				setup_postdata( $GLOBALS['post'] = $business_post ); // phpcs:ignore
+				$post_id    = $business_post->ID;
+				$plan_label = get_post_meta( $post_id, 'plan_label', true );
+				$plan_rank  = get_post_meta( $post_id, 'plan_rank', true );
+				$area       = get_post_meta( $post_id, 'area', true );
+				$address    = get_post_meta( $post_id, 'address', true );
+				$phone      = get_post_meta( $post_id, 'phone', true );
+				$website    = get_post_meta( $post_id, 'website', true );
+				$instagram  = get_post_meta( $post_id, 'instagram', true );
+				$terms      = get_the_terms( $post_id, 'gyoshu' );
+				$cat_name   = ( $terms && ! is_wp_error( $terms ) && ! empty( $terms ) ) ? $terms[0]->name : '';
+				$tier_class = shingu_plan_tier_class( $plan_rank );
+				$map_url    = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $address );
+				?>
+          <article class="business-card <?php echo esc_attr( $tier_class ); ?> <?php echo ( (float) $plan_rank ) < 2 ? 'premium' : ''; ?>">
+            <?php if ( has_post_thumbnail( $post_id ) ) : ?>
+              <?php echo get_the_post_thumbnail( $post_id, 'medium_large', array( 'alt' => get_the_title( $post_id ) . 'のイメージ写真' ) ); ?>
+            <?php endif; ?>
+            <div class="business-card-body">
+              <span class="plan-badge"><?php echo esc_html( $plan_label ); ?></span>
+              <h3><?php echo esc_html( get_the_title( $post_id ) ); ?></h3>
+              <p class="business-meta"><?php echo esc_html( $cat_name . ' / ' . $area ); ?></p>
+              <p><?php echo esc_html( get_the_excerpt( $post_id ) ); ?></p>
+              <dl class="card-info">
+                <div><dt>所在地</dt><dd><?php echo esc_html( $address ); ?></dd></div>
+                <div><dt>電話</dt><dd><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9]/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></dd></div>
+              </dl>
+              <div class="card-links">
+                <?php if ( $website ) : ?><a href="<?php echo esc_url( $website ); ?>" target="_blank" rel="noreferrer">公式サイト</a><?php endif; ?>
+                <a href="<?php echo esc_url( $map_url ); ?>" target="_blank" rel="noreferrer">Googleマップ</a>
+                <?php if ( $instagram ) : ?><a href="<?php echo esc_url( $instagram ); ?>" target="_blank" rel="noreferrer">Instagram</a><?php endif; ?>
+                <a class="card-detail-link" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">詳しく見る</a>
+              </div>
+            </div>
+          </article>
+          <?php endforeach; wp_reset_postdata(); ?>
+        </div>
+
+        <div id="logo-wall-block" class="logo-wall-block"<?php echo empty( $logos ) ? ' hidden' : ''; ?>>
+          <p class="logo-wall-label">1万円プラン<small>ロゴ（無い場合は社名）のみの掲載です</small></p>
+          <div id="business-logo-wall" class="logo-wall">
+            <?php
+			foreach ( $logos as $business_post ) :
+				$post_id  = $business_post->ID;
+				$website  = get_post_meta( $post_id, 'website', true );
+				$logo_id  = get_post_meta( $post_id, 'logo_id', true );
+				$href     = $website ? $website : get_permalink( $post_id );
+				$name     = get_the_title( $post_id );
+				?>
+            <a class="logo-tile" href="<?php echo esc_url( $href ); ?>"<?php echo $website ? ' target="_blank" rel="noreferrer"' : ''; ?> title="<?php echo esc_attr( $name ); ?>">
+              <?php if ( $logo_id ) : ?>
+                <?php echo wp_get_attachment_image( (int) $logo_id, 'medium', false, array( 'class' => 'logo-tile-img', 'alt' => $name . 'のロゴ' ) ); ?>
+              <?php else : ?>
+                <span class="logo-tile-name"><?php echo esc_html( $name ); ?></span>
+              <?php endif; ?>
+            </a>
+            <?php endforeach; ?>
+          </div>
         </div>
       </section>
     </main>

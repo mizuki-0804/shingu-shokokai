@@ -21,6 +21,17 @@
   --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --header-h: 72px;
+  /* 検索欄(.search-dock)がFVに食い込む量。
+     FVの下余白(.hero-inner の padding-bottom)は必ずこれより大きくすること。
+     小さいと、食い込んだ白いパネルがFVのボタンを覆ってしまう。 */
+  --dock-lift: 40px;
+
+  /* 入力欄・選択欄の共通寸法。フォーム部品の高さはここだけで決める。
+     個々の場所で padding や line-height を上書きしないこと。
+     body の line-height を継承すると高さが揃わなくなるため、必ずここで指定する。 */
+  --field-pad-y: 11px;
+  --field-pad-x: 14px;
+  --field-line: 1.6;
   --gutter: clamp(20px, 5vw, 72px);
   /* 見出しの統一タイプスケール */
   /* ============================================================
@@ -169,16 +180,12 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .opening-mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 64px;
   height: 64px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: var(--paper);
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 700;
+  background-color: var(--blue);
+  -webkit-mask: url("./img/logo-mark.png") center / contain no-repeat;
+  mask: url("./img/logo-mark.png") center / contain no-repeat;
 }
 
 .opening-title {
@@ -292,18 +299,17 @@ main, .site-footer, .site-header, .mobile-menu {
   margin-right: auto;
 }
 
+/* 商工会章（歯車の中にS）。1枚のPNGを「型抜き」として使い、
+   色はCSS側で決める。こうしておくと、明るい背景・写真の上・濃いフッターで
+   同じ画像を色だけ変えて使い回せる（白版・黒版を別々に持たなくてよい）。 */
 .brand-mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: var(--blue);
-  color: var(--paper);
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 700;
   flex: none;
+  background-color: var(--blue);
+  -webkit-mask: url("./img/logo-mark.png") center / contain no-repeat;
+  mask: url("./img/logo-mark.png") center / contain no-repeat;
 }
 
 .brand-text {
@@ -333,10 +339,16 @@ main, .site-footer, .site-header, .mobile-menu {
   color: rgba(255, 255, 255, 0.75);
 }
 
+/* 写真に重なっているときは白 */
 .site-header.on-hero:not(.is-scrolled) .brand-mark {
-  background: rgba(255, 255, 255, 0.16);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  background-color: #fff;
+}
+
+/* 濃いフッターの上では明るい色 */
+.footer-brand .brand-mark {
+  width: 32px;
+  height: 32px;
+  background-color: var(--paper);
 }
 
 .site-nav {
@@ -482,9 +494,11 @@ main, .site-footer, .site-header, .mobile-menu {
   inset: 0;
   z-index: 105;
   display: grid;
-  align-content: center;
+  /* 中央寄せだと、項目を読みやすい大きさに落としたときに
+     上下へ大きな空白ができるので、ヘッダーのすぐ下から並べる */
+  align-content: start;
   gap: 8px;
-  padding: 100px var(--gutter) 48px;
+  padding: calc(var(--header-h) + 28px) var(--gutter) 48px;
   background: var(--paper);
   opacity: 0;
   visibility: hidden;
@@ -498,9 +512,11 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .mobile-menu a {
   font-family: var(--font-display);
-  font-size: var(--fs-2xl);
+  /* 24pxは見出しの大きさで、メニューとしては大きすぎた（1行67px） */
+  font-size: var(--fs-lg);
+  line-height: 1.5;
   font-weight: 700;
-  padding: 10px 0;
+  padding: 14px 0;
   border-bottom: 1px solid var(--line);
   transform: translateY(14px);
   opacity: 0;
@@ -585,19 +601,29 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .hero-giant {
+  /* FVを画面いっぱいから 620px 前後に縮めたため、下端に置くと
+     ボタン・スライド番号・その下の検索欄に重なってしまう。
+     見出しの右側にあいた空へ、ぶつからない大きさで置く。 */
   position: absolute;
-  right: -0.04em;
-  bottom: -0.14em;
+  right: clamp(16px, 3vw, 40px);
+  top: calc(var(--header-h) + 24px);
   z-index: 1;
   font-family: var(--font-en);
   font-weight: 600;
-  font-size: clamp(64px, 14vw, 200px);
+  font-size: clamp(44px, 7.6vw, 112px);
   line-height: 1;
   letter-spacing: 0.02em;
   color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.34);
   pointer-events: none;
   user-select: none;
+}
+
+/* 横幅900px以下では、見出しに重なるため出さない */
+@media (max-width: 900px) {
+  .hero-giant {
+    display: none;
+  }
 }
 
 /* スクロール視差(--sy) とポインター視差(--ppx) を合成 */
@@ -610,7 +636,7 @@ main, .site-footer, .site-header, .mobile-menu {
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: calc(var(--header-h) + 40px) var(--gutter) clamp(48px, 7vh, 80px);
+  padding: calc(var(--header-h) + 40px) var(--gutter) calc(var(--dock-lift) + clamp(20px, 2.6vh, 28px));
   max-width: 1240px;
   margin-inline: auto;
 }
@@ -690,7 +716,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .hero-panels a {
   position: relative;
   display: grid;
-  grid-template-columns: 74px 1fr auto;
+  grid-template-columns: 74px 1fr;
   align-items: center;
   gap: 10px;
   padding: 15px 18px;
@@ -817,46 +843,10 @@ main, .site-footer, .site-header, .mobile-menu {
   to { transform: scaleY(1); }
 }
 
-.hero-scroll {
-  position: absolute;
-  z-index: 3;
-  left: clamp(16px, 3vw, 40px);
-  bottom: 26px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-en);
-  font-size: var(--fs-2xs);
-  letter-spacing: 0.32em;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.hero-scroll i {
-  width: 56px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.4);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-scroll i::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  animation: scroll-hint 2.2s var(--ease-soft) infinite;
-}
-
-@keyframes scroll-hint {
-  0% { transform: translateX(-100%); }
-  55% { transform: translateX(0); }
-  100% { transform: translateX(102%); }
-}
 
 @media (max-width: 760px) {
-  /* 狭い画面ではスライド番号・スクロール表示が本文と重なるため非表示 */
-  .hero-progress,
-  .hero-scroll {
+  /* 狭い画面ではスライド番号が本文と重なるため非表示 */
+  .hero-progress {
     display: none;
   }
   .hero-kicker em {
@@ -896,7 +886,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .search-dock {
   position: relative;
   z-index: 4;
-  margin: -74px var(--gutter) 0;
+  margin: calc(-1 * var(--dock-lift)) var(--gutter) 0;
 }
 
 .dock-form {
@@ -954,6 +944,19 @@ main, .site-footer, .site-header, .mobile-menu {
   transition: color 0.3s;
 }
 
+/* 矢印などの記号を置かない方針のため、文字だけのリンクは
+   下線で「押せる」ことを示す（記号ゼロでも導線が分かるように） */
+.dock-all,
+.newsline-more,
+.inverted-dock-all {
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 4px;
+}
+
+.inverted-dock-all {
+  border-bottom-color: var(--gold);
+}
+
 .dock-all i {
   font-style: normal;
   color: var(--blue);
@@ -983,7 +986,8 @@ main, .site-footer, .site-header, .mobile-menu {
   color: var(--ink);
   background: var(--paper);
   border: 1px solid var(--line-strong);
-  padding: 15px 40px 15px 18px;
+  padding: var(--field-pad-y) 38px var(--field-pad-y) var(--field-pad-x);
+  line-height: var(--field-line);
   border-radius: 0;
   -webkit-appearance: none;
   appearance: none;
@@ -1017,7 +1021,7 @@ main, .site-footer, .site-header, .mobile-menu {
 
   .dock-select select {
     font-size: var(--fs-base);
-    padding: 14px 38px 14px 16px;
+    padding: var(--field-pad-y) 38px var(--field-pad-y) var(--field-pad-x);
   }
 }
 
@@ -1056,8 +1060,9 @@ main, .site-footer, .site-header, .mobile-menu {
   overflow: hidden;
   border-left: 1px solid var(--line-strong);
   padding-left: 18px;
-  -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
-  mask-image: linear-gradient(90deg, #000 88%, transparent);
+  /* 左右どちらの端でも文字が途中で切れて見えないよう、両側をぼかす */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 86%, transparent);
+  mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 86%, transparent);
 }
 
 .newsline-track ul {
@@ -1584,7 +1589,7 @@ main, .site-footer, .site-header, .mobile-menu {
 .role-row {
   position: relative;
   display: grid;
-  grid-template-columns: auto auto 1fr auto;
+  grid-template-columns: auto auto 1fr;
   align-items: center;
   gap: clamp(16px, 3.4vw, 44px);
   padding: clamp(22px, 4vh, 38px) clamp(6px, 2vw, 24px);
@@ -2414,14 +2419,34 @@ main, .site-footer, .site-header, .mobile-menu {
   animation-play-state: paused;
 }
 
-/* 加盟企業カード（businesses.html と同じ .business-card をそのまま流用） */
+/* 加盟企業の流れる帯。
+   businesses.html と同じ .business-card を流用しているが、あちらは
+   紹介文やプラン表示の有無でカードの中身の量がバラバラ。そのまま流すと
+   帯の中で高さが揃わず、短いカードが引き伸ばされて社名の下に大きな
+   空白ができる（スマホでは1枚395pxまで伸びていた）。
+   ここでは「写真と社名だけ」に絞って、全部同じ形にする。 */
 .members-track .business-card {
   flex: none;
-  width: 240px;
+  /* スマホでは画面の6割を1枚が占めてしまうため、画面幅に合わせて縮める */
+  width: clamp(132px, 38vw, 240px);
 }
 
-.members-track .business-card .card-links {
+.members-track .business-card > img {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  min-height: 0;
+  object-fit: cover;
+}
+
+.members-track .business-card .card-links,
+.members-track .business-card .plan-badge,
+.members-track .business-card .card-info,
+.members-track .business-card .business-card-body > p {
   display: none;
+}
+
+.members-track .business-card h3 {
+  font-size: var(--fs-base);
 }
 
 /* ============================================================
@@ -2661,7 +2686,9 @@ main, .site-footer, .site-header, .mobile-menu {
 
 .news-list > a {
   display: grid;
-  grid-template-columns: auto auto 1fr auto;
+  /* 2列目は「種類」（補助金・セミナー等）。種類が未設定の行や、
+     文字数の違う種類が混ざってもタイトルの位置が揃うよう、幅を確保しておく。 */
+  grid-template-columns: auto minmax(6.5em, auto) 1fr;
   align-items: center;
   gap: clamp(14px, 2.6vw, 28px);
   padding: clamp(18px, 3vh, 26px) 6px;
@@ -2692,20 +2719,12 @@ main, .site-footer, .site-header, .mobile-menu {
 }
 
 .news-list h3 {
+  /* 種類が無い行でも、タイトルは必ず3列目（＝他の行と同じ位置）に置く */
+  grid-column: 3;
   font-family: var(--font-sans);
   font-size: var(--fs-base);
   font-weight: 500;
   letter-spacing: 0.04em;
-}
-
-.news-list i {
-  font-style: normal;
-  color: var(--blue);
-  transition: transform 0.35s var(--ease-out);
-}
-
-.news-list > a:hover i {
-  transform: translateX(6px);
 }
 
 .news-more {
@@ -2721,10 +2740,7 @@ main, .site-footer, .site-header, .mobile-menu {
   .news-list h3 {
     grid-column: 1 / -1;
   }
-  .news-list i {
-    display: none;
   }
-}
 
 /* ============================================================
    CONTACT / APPLY

@@ -2,7 +2,7 @@
       <div class="footer-giant" aria-hidden="true"><span>SHINGUMACHI SHOKOKAI</span></div>
       <div class="footer-inner">
         <div>
-          <p class="footer-brand"><span class="brand-mark">新</span>新宮町商工会｜まちの仕事と暮らし</p>
+          <p class="footer-brand"><span class="brand-mark" aria-hidden="true"></span>新宮町商工会｜まちの仕事と暮らし</p>
           <p class="footer-note">新宮町のお店・会社・人をつなぐ商工会です</p>
         </div>
         <nav class="footer-nav" aria-label="フッターナビゲーション">

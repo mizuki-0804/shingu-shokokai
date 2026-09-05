@@ -3,6 +3,8 @@
   <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/favicon-32.png' ); ?>" />
+    <link rel="apple-touch-icon" href="<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/img/favicon-180.png' ); ?>" />
     <?php wp_head(); ?>
   </head>
   <body <?php body_class( is_front_page() ? '' : 'subpage' ); ?>>
@@ -12,7 +14,7 @@
 
     <header class="site-header<?php echo ! is_front_page() ? ' is-scrolled' : ''; ?>" id="site-header">
       <a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="新宮町商工会 トップへ">
-        <span class="brand-mark">新</span>
+        <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-text">
           <strong>新宮町商工会</strong>
           <small>SHINGUMACHI SHOKOKAI</small>

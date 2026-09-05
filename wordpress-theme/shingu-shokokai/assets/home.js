@@ -9,7 +9,10 @@
   const qsa = (s, root = document) => [...root.querySelectorAll(s)];
 
   const data = window.SHINGU_DATA || { businesses: [], features: [], interviews: [] };
-  const businesses = [...data.businesses].sort((a, b) => a.planRank - b.planRank);
+  // orderByPlan は data.js 側にある。data.js が読めていない場合はここも存在しないので、
+  // 直に呼ぶと例外で以降が全部止まり、見出しやメニューが opacity:0 のまま残ってしまう
+  // （上の行の保険が意味を失う）。企業データが無いときは空のまま先へ進める。
+  const businesses = typeof orderByPlan === "function" ? orderByPlan(data.businesses) : [];
 
   /* ディレクトリの「掲載中の企業」数は実際の掲載件数に連動させる */
   const directoryCountEl = qs("#directory-count-num");
@@ -204,6 +207,21 @@
 
   /* ============ 業種ドック（プルダウンで businesses.html?category=X へ遷移） ============ */
   const dockCategory = qs("#dock-category");
+  // 選択肢はデータから作る。直書きだと企業を追加しても選択肢に出ない。
+  // 並びは掲載社数の多い順。表示名だけ変えたい業種は CATEGORY_LABELS に書く。
+  const CATEGORY_LABELS = { 建設: "住まい・建設" };
+  if (dockCategory) {
+    const counts = new Map();
+    businesses.forEach((b) => counts.set(b.category, (counts.get(b.category) || 0) + 1));
+    [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "ja"))
+      .forEach(([category]) => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = CATEGORY_LABELS[category] || category;
+        dockCategory.append(option);
+      });
+  }
   dockCategory?.addEventListener("change", () => {
     const value = dockCategory.value;
     window.location.href = value ? `./businesses.html?category=${encodeURIComponent(value)}` : "./businesses.html";
@@ -345,8 +363,17 @@
   }
 
   /* ============ 加盟企業カード（無限スライダー） ============ */
-  // ロゴ用に別デザインを作らず、businesses.html と同じカード（businessCard、共通部品はdata.js）をそのまま流す
-  const buildCards = (list) => list.map((b) => businessCard(b, { compact: true })).join("");
+  // 帯は「写真と社名」だけの飾り。企業一覧側は掲載プランでカードの形が変わる
+  // （1万円プランはロゴだけ）ため、そちらの部品は使わず専用に描く。
+  const memberTile = (b) => `
+    <article class="business-card">
+      <img src="${b.image}" alt="${b.name}のイメージ写真" loading="lazy">
+      <div class="business-card-body">
+        <h3>${b.name}</h3>
+      </div>
+    </article>
+  `;
+  const buildCards = (list) => list.map(memberTile).join("");
   const trackA = qs("#members-track-a");
   const trackB = qs("#members-track-b");
   if (trackA && trackB && businesses.length) {

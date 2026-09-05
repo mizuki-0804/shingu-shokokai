@@ -154,6 +154,52 @@ function shingu_shokokai_news_link( $post_id ) {
 }
 
 /**
+ * 掲載順。
+ * 掲載プランの優先順位（10万円 → 5万円 → 1万円）は必ず守り、
+ * 同じ料金を払っている企業どうしの並びだけ、ページを開くたびに入れ替える。
+ * 特定の企業がいつも上に来ないようにするため（公平性）。
+ *
+ * まとめる単位は「プラン名（＝料金）」。優先度の数値でまとめると、
+ * 同じ料金なのに数値が 1 と 1.5 のように違っていた場合に別組になり、
+ * 順番が固定されてしまう（静的サイト側で実際にそうなっていた）。
+ *
+ * WP_Query には「Xで並べてから同点だけランダム」が無いので、
+ * 取得後にPHP側で組み分けして shuffle する。
+ *
+ * @param WP_Post[] $posts 会員企業の投稿
+ * @return WP_Post[] 並べ替えたもの
+ */
+function shingu_shokokai_order_by_plan( $posts ) {
+	$groups = array();
+	$rank   = array();
+	foreach ( $posts as $post ) {
+		$label = get_post_meta( $post->ID, 'plan_label', true );
+		if ( '' === $label ) {
+			$label = '（プラン未設定）';
+		}
+		$groups[ $label ][] = $post;
+		$r = (float) get_post_meta( $post->ID, 'plan_rank', true );
+		$rank[ $label ] = isset( $rank[ $label ] ) ? min( $rank[ $label ], $r ) : $r;
+	}
+	asort( $rank );
+
+	$ordered = array();
+	foreach ( array_keys( $rank ) as $label ) {
+		shuffle( $groups[ $label ] );
+		$ordered = array_merge( $ordered, $groups[ $label ] );
+	}
+	return $ordered;
+}
+
+/**
+ * 10万円・5万円プラン（plan_rank 3未満）だけ、記事のような詳しい紹介ページを持つ。
+ * 1万円プランはロゴだけの一覧に出す。
+ */
+function shingu_shokokai_has_detail_page( $post_id ) {
+	return (float) get_post_meta( $post_id, 'plan_rank', true ) < 3;
+}
+
+/**
  * assets/ 内のファイルは編集頻度が高いため、テーマのVersionではなく
  * ファイルの更新日時をバージョンにして、ブラウザキャッシュが古いまま
  * 残らないようにする。
