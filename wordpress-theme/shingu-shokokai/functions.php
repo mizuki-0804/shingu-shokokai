@@ -200,6 +200,47 @@ function shingu_shokokai_has_detail_page( $post_id ) {
 }
 
 /**
+ * ログイン名を外から分からなくする。
+ *
+ * WordPressは標準のままだと、?author=1 を開いただけで
+ * ログイン名入りのアドレスへ転送し、REST APIも利用者一覧を返してしまう。
+ * ログイン名が割れると、攻撃側は「あとはパスワードだけ」の状態になる。
+ * 本番でも必要な守りなので、テーマに入れて一緒に持っていく。
+ */
+function shingu_shokokai_block_author_scan() {
+	if ( is_admin() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+		return;
+	}
+	if ( isset( $_GET['author'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		wp_safe_redirect( home_url( '/' ), 301 );
+		exit;
+	}
+}
+// template_redirect だと、WordPressが先に「ログイン名入りのアドレス」へ
+// 転送してしまい間に合わない。問い合わせを組み立てる前の init で止める。
+add_action( 'init', 'shingu_shokokai_block_author_scan' );
+
+function shingu_shokokai_hide_users_endpoint( $endpoints ) {
+	if ( is_user_logged_in() ) {
+		return $endpoints;
+	}
+	unset( $endpoints['/wp/v2/users'] );
+	unset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
+	return $endpoints;
+}
+add_filter( 'rest_endpoints', 'shingu_shokokai_hide_users_endpoint' );
+
+/** 投稿者ごとの一覧ページも出さない（ログイン名が出るため） */
+function shingu_shokokai_disable_author_archive() {
+	if ( ! is_admin() && is_author() ) {
+		global $wp_query;
+		$wp_query->set_404();
+		status_header( 404 );
+	}
+}
+add_action( 'template_redirect', 'shingu_shokokai_disable_author_archive' );
+
+/**
  * assets/ 内のファイルは編集頻度が高いため、テーマのVersionではなく
  * ファイルの更新日時をバージョンにして、ブラウザキャッシュが古いまま
  * 残らないようにする。

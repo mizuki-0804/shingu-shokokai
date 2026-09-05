@@ -50,7 +50,6 @@ get_header();
           <button type="button" data-slide="2" aria-label="スライド3を表示"><em>03</em><i></i></button>
         </div>
 
-        <a class="hero-scroll" href="#search-dock" data-hero-seq="6"><span>SCROLL</span><i aria-hidden="true"></i></a>
       </section>
 
       <!-- ============ CATEGORY DOCK（業種から探す） ============ -->
